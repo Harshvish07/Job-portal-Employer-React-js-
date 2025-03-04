@@ -24,6 +24,7 @@ import Contact from "./JobPost/components/Contact";
 import TalentPool from "./JobPost/components/TalentPool";
 import ComingSoonPage from "./pages/module/ComingSoonPage";
 import SettingsPage from "./JobPost/components/pages/Mainsetting/Main-setting";
+import MyJobs from "./JobPost/components/pages/Myjobs/Main-my-Jobs";
 
 const Home = () => (
   <h1>
@@ -32,7 +33,7 @@ const Home = () => (
   </h1>
 );
 const FindCandidate = () => <h1>FindCandidate</h1>;
-const MyJobs = () => <h1>MyJobs</h1>;
+
 // const Applications = () => <h1>Applications</h1>;
 const CustomerSupports = () => <h1>CustomerSupports</h1>;
 
@@ -53,7 +54,10 @@ function App() {
               <Route path="/saved-candidates" element={<SavedCandidates />} />
               <Route path="/plans-billing" element={<PaymentBilling />} />
               <Route path="/post-a-job" element={<PostJobForm />} />
-              <Route path="/my-jobs" element={<CandidatePool />} />
+              <Route path="/manage-jobs" element={<CandidatePool />} />
+
+              <Route path="/my-jobs" element={<MyJobs />} />
+
               <Route path="/applications" element={<Applications />} />
               <Route path="/customer-supports" element={<CustomerSupports />} />
               <Route path="/faqs" element={<Faqs />} />

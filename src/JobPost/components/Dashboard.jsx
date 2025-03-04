@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaInstagram, FaBell } from "react-icons/fa";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import Sidebar from "./Sidebar";
+import Sidebar from "./Sidebar/Sidebar";
 import JobPromotionModal from "./JobPromotionModal";
 
 const jobs = [

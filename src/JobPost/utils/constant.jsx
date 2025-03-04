@@ -30,9 +30,9 @@ export const sidebarItem = [
   },
   {
     id: 4,
-    name: "My Jobs",
+    name: "Manage Job",
     icon: <GoBriefcase />,
-    path: "/my-jobs"
+    path: "/manage-jobs"
   },
   {
     id: 5,
