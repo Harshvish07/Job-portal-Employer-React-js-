@@ -3,6 +3,8 @@ import { FaSearch, FaBell, FaCommentDots } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
 import { Menu } from "@headlessui/react";
 import { IoChevronDown } from "react-icons/io5";
+import ProfileIcon from "../../../../../public/profileIcon.svg";
+import companyLogo from "../../../../../public/companyLogo.svg";
 
 const countries = [
   { name: "India", flag: "https://flagcdn.com/w40/in.png" },
@@ -14,14 +16,18 @@ const MyJobsSearchBar = () => {
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
 
   return (
-    <div className="flex  items-center justify-between bg-white px-6 py-2 shadow-sm">
+    <div className="flex  items-center justify-between bg-white px-6 py-1 shadow-sm">
       {/* Left Side - Logo */}
-      <div className="flex items-center">
-        <img src="/logo.png" alt="TechnoHire Logo" className="h-10" />
+      <div className="flex items-center md:space-x-96 md:ml-[75px] ">
+        <img
+          src={companyLogo}
+          alt="TechnoHire Logo"
+          className="h-24 cursor-pointer mr-2 "
+        />
       </div>
 
       {/* Middle - Search Bar */}
-      <div className="flex items-center border border-gray-300 rounded-full px-3 py-2 w-1/3">
+      <div className="flex items-center border border-gray-300  px-2 py-3 w-1/2 h-2/3">
         {/* Country Selector (Dropdown) */}
         <Menu as="div" className="relative">
           <Menu.Button className="flex items-center space-x-2 border-r pr-3 cursor-pointer">
@@ -74,9 +80,9 @@ const MyJobsSearchBar = () => {
           <FaBell className="text-gray-600 text-lg cursor-pointer" />
           <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
         </div>
-        <IoCartOutline className="text-gray-600 text-lg cursor-pointer" />
+
         <img
-          src="/profile.jpg"
+          src={ProfileIcon}
           alt="Profile"
           className="h-8 w-8 rounded-full border-2 border-purple-500"
         />
