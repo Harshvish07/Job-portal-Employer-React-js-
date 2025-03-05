@@ -1,7 +1,7 @@
-import React from 'react';
-import { sidebarItem } from '../../utils/constant';
+import React from "react";
+import { sidebarItem } from "../../utils/constant";
 import { GoSignOut } from "react-icons/go";
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   return (
@@ -40,7 +40,9 @@ const SidebarLink = ({ to, icon, label }) => {
       to={to}
       className={({ isActive }) =>
         `flex items-center space-x-4 px-4 py-2 rounded ${
-          isActive ? "bg-blue-100  border-l-4  border-[#7900BA] text-[#767F8C]" : "text-[#767F8C] hover:bg-blue-100"
+          isActive
+            ? "bg-blue-100  border-l-4  border-[#7900BA] text-[#767F8C]"
+            : "text-[#767F8C] hover:bg-blue-100"
         }`
       }
     >

@@ -50,11 +50,11 @@ function App() {
                 <Route path="overview" element={<Overview />} />
                 <Route path="employerprofile" element={<MainSetting />} />
                 <Route path="main-settings" element={<SettingsPage />} />
+                <Route path="post-a-job" element={<PostJobForm />} />
+                <Route path="manage-jobs" element={<CandidatePool />} />
+                <Route path="saved-candidates" element={<SavedCandidates />} />
+                <Route path="plans-billing" element={<PaymentBilling />} />
               </Route>
-              <Route path="/saved-candidates" element={<SavedCandidates />} />
-              <Route path="/plans-billing" element={<PaymentBilling />} />
-              <Route path="/post-a-job" element={<PostJobForm />} />
-              <Route path="/manage-jobs" element={<CandidatePool />} />
 
               <Route path="/my-jobs" element={<MyJobs />} />
 

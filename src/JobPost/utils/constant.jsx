@@ -26,31 +26,31 @@ export const sidebarItem = [
     id: 3,
     name: "Post a Job",
     icon: <CiCirclePlus />,
-    path: "/post-a-job"
+    path: "/dashboard/post-a-job"
   },
   {
     id: 4,
     name: "Manage Job",
     icon: <GoBriefcase />,
-    path: "/manage-jobs"
+    path: "/dashboard/manage-jobs"
   },
   {
     id: 5,
     name: "Saved Candidates",
     icon: <CiBookmark />,
-    path: "/saved-candidates"
+    path: "/dashboard/saved-candidates"
   },
   {
     id: 6,
     name: "Plans and Billing",
     icon: <PiNotebookLight />,
-    path: "/plans-billing"
+    path: "/dashboard/plans-billing"
   },
   {
     id: 7,
     name: "All Companies",
     icon: <PiUserList />,
-    path: "/all-companies"
+    path: "/dashboard/all-companies"
   },
   {
     id: 8,
