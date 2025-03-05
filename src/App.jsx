@@ -129,7 +129,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />}>
               <Route index element={<Overview />} />
               <Route path="overview" element={<Overview />} />
-              <Route path="employer-profile" element={<MainSetting />} />
+              <Route path="employerprofile" element={<MainSetting />} />
               <Route path="main-settings" element={<SettingsPage />} />
               <Route path="post-a-job" element={<PostJobForm />} />
               <Route path="manage-jobs" element={<CandidatePool />} />
