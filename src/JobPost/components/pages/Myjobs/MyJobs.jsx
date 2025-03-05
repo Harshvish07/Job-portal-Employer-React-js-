@@ -1,74 +1,76 @@
 import React from "react";
 import { FaCheckCircle, FaTimesCircle, FaUsers } from "react-icons/fa";
 import { IoEllipsisVertical } from "react-icons/io5";
+import useJobs from "../../../../hooks/postJobs";
 
-const jobs = [
-  {
-    title: "UI/UX Designer",
-    type: "Full Time",
-    status: "Active",
-    remaining: "27 days remaining",
-    applications: 798
-  },
-  {
-    title: "Senior UX Designer",
-    type: "Internship",
-    status: "Active",
-    remaining: "8 days remaining",
-    applications: 185
-  },
-  {
-    title: "Junior Graphic Designer",
-    type: "Full Time",
-    status: "Active",
-    remaining: "24 days remaining",
-    applications: 583
-  },
-  {
-    title: "Front End Developer",
-    type: "Full Time",
-    status: "Expire",
-    remaining: "Dec 7, 2019",
-    applications: 740
-  },
-  {
-    title: "Interaction Designer",
-    type: "Contract Base",
-    status: "Expire",
-    remaining: "Feb 2, 2019",
-    applications: 426
-  },
-  {
-    title: "Software Engineer",
-    type: "Temporary",
-    status: "Active",
-    remaining: "9 days remaining",
-    applications: 922
-  },
-  {
-    title: "Product Designer",
-    type: "Full Time",
-    status: "Active",
-    remaining: "7 days remaining",
-    applications: 994
-  },
-  {
-    title: "Project Manager",
-    type: "Full Time",
-    status: "Expire",
-    remaining: "Dec 4, 2019",
-    applications: 196
-  },
-  {
-    title: "Marketing Manager",
-    type: "Full Time",
-    status: "Active",
-    remaining: "4 days remaining",
-    applications: 492
-  }
-];
+// const jobs = [
+//   {
+//     title: "UI/UX Designer",
+//     type: "Full Time",
+//     status: "Active",
+//     remaining: "27 days remaining",
+//     applications: 798
+//   },
+//   {
+//     title: "Senior UX Designer",
+//     type: "Internship",
+//     status: "Active",
+//     remaining: "8 days remaining",
+//     applications: 185
+//   },
+//   {
+//     title: "Junior Graphic Designer",
+//     type: "Full Time",
+//     status: "Active",
+//     remaining: "24 days remaining",
+//     applications: 583
+//   },
+//   {
+//     title: "Front End Developer",
+//     type: "Full Time",
+//     status: "Expire",
+//     remaining: "Dec 7, 2019",
+//     applications: 740
+//   },
+//   {
+//     title: "Interaction Designer",
+//     type: "Contract Base",
+//     status: "Expire",
+//     remaining: "Feb 2, 2019",
+//     applications: 426
+//   },
+//   {
+//     title: "Software Engineer",
+//     type: "Temporary",
+//     status: "Active",
+//     remaining: "9 days remaining",
+//     applications: 922
+//   },
+//   {
+//     title: "Product Designer",
+//     type: "Full Time",
+//     status: "Active",
+//     remaining: "7 days remaining",
+//     applications: 994
+//   },
+//   {
+//     title: "Project Manager",
+//     type: "Full Time",
+//     status: "Expire",
+//     remaining: "Dec 4, 2019",
+//     applications: 196
+//   },
+//   {
+//     title: "Marketing Manager",
+//     type: "Full Time",
+//     status: "Active",
+//     remaining: "4 days remaining",
+//     applications: 492
+//   }
+// ];
 
 const JobList = () => {
+  const { jobs, loading, error } = useJobs();
   return (
     <div className="container mx-auto p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-xl font-semibold mb-4">My Jobs</h2>
@@ -85,13 +87,15 @@ const JobList = () => {
           <tbody className="text-gray-700 text-sm font-light">
             {jobs.map((job, index) => (
               <tr
-                key={index}
+                key={job.id}
                 className="border-b border-gray-200 hover:bg-gray-50"
               >
                 <td className="py-3 px-6 text-left">
-                  <div className="font-medium text-gray-800">{job.title}</div>
+                  <div className="font-medium text-gray-800">
+                    {job.jobTitle}
+                  </div>
                   <div className="text-xs text-gray-500">
-                    {job.type} • {job.remaining}
+                    {job.jobType} • {new Date(job.expireDate).toDateString()}
                   </div>
                 </td>
                 <td className="py-3 px-6 text-center">
@@ -127,7 +131,7 @@ const JobList = () => {
           <button
             key={num}
             className={`px-3 py-2 rounded ${
-              num === 4
+              num === 1
                 ? "bg-purple-500 text-white"
                 : "text-gray-500 hover:bg-gray-200"
             }`}
