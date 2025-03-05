@@ -3,12 +3,38 @@ import { useLocation } from "react-router-dom";
 import Header from "./header/Header";
 import Sidebar from "./Sidebar/Sidebar";
 import Footer from "./Footer/Footer";
+import SubHeader from "./header/SubHeader";
 
 const Body = ({ children }) => {
   const location = useLocation();
-  const isHiddenPage = ["/faqs", "/termsConditions", "/contact", "/talentPool",'/login','/'].includes(location.pathname);
-  const isHiddenSidebar = isHiddenPage || [ "/not-found",'/comingSoonPage'].includes(location.pathname)
-  const isHiddenFooter = isHiddenPage || [ '/comingSoonPage'].includes(location.pathname)
+  const isHiddenPage = [
+    "/faqs",
+    "/termsConditions",
+    "/contact",
+    "/talentPool",
+    "/login",
+    "/forget-password",
+    "/resetPassword",
+    "/detailspage",
+    "/",
+    "/my-jobs",
+
+    "/"
+  ].includes(location.pathname);
+  const isHiddenSidebar =
+    isHiddenPage ||
+    [
+      "/not-found",
+      "/comingSoonPage",
+      "/my-jobs",
+      "/find-candidate",
+
+      "/applications",
+      "/customer-supports",
+      "/comingSoonPage"
+    ].includes(location.pathname);
+  const isHiddenFooter =
+    isHiddenPage || ["/comingSoonPage"].includes(location.pathname);
 
   return (
     <div className="flex flex-col h-screen">
@@ -25,11 +51,10 @@ const Body = ({ children }) => {
         )}
 
         {/* Main Content Area */}
-        <div className={`flex-1 ${isHiddenPage ? '' : 'md:mx-[130px]'}`}>
+        <div className={`flex-1 ${isHiddenPage ? "" : "md:mx-[130px]"}`}>
           <main>{children}</main>
         </div>
       </div>
-
       {/* Footer */}
       {!isHiddenFooter && <Footer />}
     </div>

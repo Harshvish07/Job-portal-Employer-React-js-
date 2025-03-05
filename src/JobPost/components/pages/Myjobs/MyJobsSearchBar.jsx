@@ -14,7 +14,7 @@ const MyJobsSearchBar = () => {
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
 
   return (
-    <div className="flex items-center justify-between bg-white px-6 py-2 shadow-sm">
+    <div className="flex  items-center justify-between bg-white px-6 py-2 shadow-sm">
       {/* Left Side - Logo */}
       <div className="flex items-center">
         <img src="/logo.png" alt="TechnoHire Logo" className="h-10" />
