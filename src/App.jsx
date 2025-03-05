@@ -152,10 +152,12 @@ function App() {
               <Route path="details" element={<DetailsPage />} />
             </Route> */}
             <Route path="/" element={<Layout />} />
-            <Route path="/login" element={<Login />} />{" "}
+
+            <Route path="/login" element={<Login />} />
             <Route path="/forgetPassword" element={<ForgetPassword />} />
             <Route path="/resetPassword" element={<ResetPassword />} />
             <Route path="/detailspage" element={<DetailsPage />} />
+
             {/* Catch-All Route */}
             <Route path="*" element={<NotFound />} />
           </Routes>
