@@ -9,7 +9,14 @@ const useJobs = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        "https://technohire-backend.onrender.com/job/getAllJobs"
+        "https://technohire-backend.onrender.com/job/getAllJobs",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*" // This only works if the backend allows it
+          }
+        }
       );
       const data = await response.json();
       if (data.success) {
