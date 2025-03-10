@@ -3,8 +3,8 @@ import { FaSearch, FaBell, FaCommentDots } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
 import { Menu } from "@headlessui/react";
 import { IoChevronDown } from "react-icons/io5";
-import ProfileIcon from "../../../../../public/profileIcon.svg";
-import companyLogo from "../../../../../public/companyLogo.svg";
+import ProfileIcon from "../../../../assets/profileIcon.svg";
+import companyLogo from "../../../../assets/companyLogo.svg";
 
 const countries = [
   { name: "India", flag: "https://flagcdn.com/w40/in.png" },

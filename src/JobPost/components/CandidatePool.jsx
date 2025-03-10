@@ -1,183 +1,136 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaInstagram, FaBell } from "react-icons/fa";
 import { BsThreeDotsVertical } from "react-icons/bs";
-// import Sidebar from "./Sidebar";
-import JobPromotionModal from "./JobPromotionModal";
 
-const jobs = [
-  {
-    title: "UI/UX Designer",
-    type: "Full Time",
-    status: "Active",
-    remaining: "27 days remaining",
-    applications: 798
-  },
-  {
-    title: "Senior UX Designer",
-    type: "Internship",
-    status: "Active",
-    remaining: "8 days remaining",
-    applications: 185
-  },
-  {
-    title: "Junior Graphic Designer",
-    type: "Full Time",
-    status: "Active",
-    remaining: "24 days remaining",
-    applications: 583
-  },
-  {
-    title: "Front End Developer",
-    type: "Full Time",
-    status: "Expired",
-    remaining: "Dec 7, 2019",
-    applications: 740
-  },
-  {
-    title: "Technical Support Specialist",
-    type: "Part Time",
-    status: "Active",
-    remaining: "4 days remaining",
-    applications: 556
-  },
-  {
-    title: "Interaction Designer",
-    type: "Contract Base",
-    status: "Expired",
-    remaining: "Feb 2, 2019",
-    applications: 426
-  },
-  {
-    title: "Software Engineer",
-    type: "Temporary",
-    status: "Active",
-    remaining: "9 days remaining",
-    applications: 922
-  },
-  {
-    title: "Product Designer",
-    type: "Full Time",
-    status: "Active",
-    remaining: "7 days remaining",
-    applications: 994
-  },
-  {
-    title: "Project Manager",
-    type: "Full Time",
-    status: "Expired",
-    remaining: "Dec 4, 2019",
-    applications: 198
-  },
-  {
-    title: "Marketing Manager",
-    type: "Full Time",
-    status: "Active",
-    remaining: "4 days remaining",
-    applications: 492
-  }
-];
+import JobPromotionModal from "./JobPromotionModal";
+import useJobs from "../../hooks/postJobs";
+import { FaArrowRight, FaEllipsisV, FaRegCheckCircle } from "react-icons/fa";
+import { RxCrossCircled } from "react-icons/rx";
 
 const CandidatePool = () => {
-  const [menuIndex, setMenuIndex] = useState();
   const [selectedJob, setSelectedJob] = useState();
+  const { jobs, loading, error } = useJobs();
+  const [menuOpen, setMenuOpen] = useState(null);
+  const [filter, setFilter] = useState("all"); // Stores selected filter option
+  const [filteredApplications, setFilteredApplications] = useState([]); // Stores filtered jobs
+
+  useEffect(() => {
+    // Update filtered jobs when jobs are loaded or filter changes
+    if (filter === "all") {
+      setFilteredApplications(jobs);
+    } else {
+      setFilteredApplications(
+        jobs.filter((job) => job.status.toLowerCase() === filter)
+      );
+    }
+  }, [jobs, filter]);
 
   return (
     <>
-      {/* Layout */}
-      <div className="flex h-screen bg-gray-100">
-        <main className=" p-6 overflow-y-auto hide-scrollbar w-[100%]">
-          <div className="flex justify-between items-center p-4 rounded-md">
-            <h2 className="text-2xl font-semibold">My Jobs ({jobs.length})</h2>
+      <div className="p-4">
+        <div className="mt-6 bg-white rounded-lg shadow-sm">
+          <div className="flex justify-between p-4">
+            <p className="font-semibold text-[20px]">Recently Posted Jobs</p>
 
-            <div className="flex items-center space-x-2">
-              <span className="text-gray-600">Job Status</span>
-              <select className="rounded-md px-4 py-2 bg-white text-gray-600 shadow-sm">
-                <option value="all">All Jobs</option>
-                <option value="active">Active</option>
-                <option value="closed">Closed</option>
-                <option value="pending">Pending</option>
-              </select>
-            </div>
+            <select
+              id="dropdown"
+              onChange={(e) => setFilter(e.target.value)}
+              value={filter}
+              className="rounded-md px-4 py-2 bg-white text-gray-600 shadow-sm"
+            >
+              <option value="all">All Jobs</option>
+              <option value="active">Active</option>
+              <option value="closed">Closed</option>
+              <option value="pending">Pending</option>
+            </select>
           </div>
 
-          {/* Job List Table */}
-          <div className="bg-white shadow rounded-md p-6">
+          {loading ? (
+            <p className="text-center text-gray-500 p-4">Loading jobs...</p>
+          ) : error ? (
+            <p className="text-center text-red-500 p-4">{error}</p>
+          ) : jobs.length > 0 ? (
             <table className="w-full border-collapse">
               <thead>
-                <tr>
-                  <th className="text-left font-medium text-gray-600">
-                    Job Title
-                  </th>
-                  <th className="text-left font-medium text-gray-600">
-                    Status
-                  </th>
-                  <th className="text-left font-medium text-gray-600">
-                    Applications
-                  </th>
-                  <th className="text-left font-medium text-gray-600">
-                    Actions
-                  </th>
+                <tr className="text-left border-b border-gray-200">
+                  <th className="p-4">JOBS</th>
+                  <th className="p-4">STATUS</th>
+                  <th className="p-4">APPLICATIONS</th>
+                  <th className="p-4">ACTIONS</th>
                 </tr>
               </thead>
               <tbody>
-                {jobs.map((job, index) => (
-                  <tr key={index} className="border-t">
-                    <td className="py-2">
-                      <div className="text-gray-800 font-medium">
-                        {job.title}
+                {filteredApplications.map((job) => (
+                  <tr key={job._id} className="border-b border-gray-200">
+                    <td className="p-4">
+                      <div className="font-medium">{job.jobTitle}</div>
+                      <div className="text-sm text-gray-500">
+                        {job.jobType} •{" "}
+                        {new Date(job.expireDate).toDateString()}
                       </div>
-                      <div className="text-gray-500">
-                        {job.type} · {job.remaining}
-                      </div>
                     </td>
-                    <td
-                      className={`py-2 font-medium ${
-                        job.status === "Active"
-                          ? "text-green-600"
-                          : "text-red-600"
-                      }`}
-                    >
-                      {job.status}
+                    <td className="flex items-center p-4">
+                      {job.status === "Active" ? (
+                        <FaRegCheckCircle className="text-green-700" />
+                      ) : (
+                        <RxCrossCircled className="text-red-700" />
+                      )}
+                      <span
+                        className={`px-2 py-1 rounded-full text-xs ${
+                          job.status === "Active"
+                            ? "text-green-700"
+                            : "text-red-700"
+                        }`}
+                      >
+                        {job.status}
+                      </span>
                     </td>
-                    <td className="py-2 text-gray-800">
-                      {job.applications} Applications
+                    <td className="p-4">
+                      {job.applications || 0} Applications
                     </td>
-                    <td className="py-2 relative">
-                      <div className="flex gap-1 items-center">
+                    <td className="p-4 relative flex items-center space-x-3">
+                      <button className="bg-[#F1F2F4] hover:bg-[#7900BA] hover:text-white text-[#7900BA] px-4 py-2 rounded-md text-sm">
+                        View Applications
+                      </button>
+                      <div className="relative">
                         <button
                           onClick={() =>
-                            setMenuIndex(menuIndex === index ? null : index)
+                            setMenuOpen(menuOpen === job._id ? null : job._id)
                           }
-                          className="px-3 py-1 bg-purple-500 text-white rounded-md focus:outline-none"
                         >
-                          View Applications
+                          <FaEllipsisV className="text-gray-600" />
                         </button>
-                        <BsThreeDotsVertical />
+                        {menuOpen === job._id && (
+                          <div className="absolute left-0 mt-1 w-[150px] bg-white border rounded shadow-md p-0 z-10">
+                            <button
+                              onClick={() => setSelectedJob(job._id)}
+                              className="w-full text-left px-4 py-2 text-sm  hover:bg-purple-700 hover:text-white text-[#7900BA] rounded-md"
+                            >
+                              Promote Job
+                            </button>
+
+                            <button className="w-full text-left px-4 py-2 text-sm hover:bg-purple-700 hover:text-white text-[#7900BA] rounded-md">
+                              View Detail
+                            </button>
+                            <button className="w-full text-left px-4 py-2 text-sm hover:bg-purple-700 hover:text-white text-[#7900BA] rounded-md">
+                              Mark as Expired
+                            </button>
+                          </div>
+                        )}
                       </div>
-                      {menuIndex === index && (
-                        <div className="absolute z-30 right-28 mt-2 bg-white shadow-md rounded-md border  w-40">
-                          <button
-                            onClick={() => setSelectedJob(job.title)}
-                            className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-                          >
-                            Promote Job
-                          </button>
-                          <button className="block w-full text-left px-4 py-2 hover:bg-gray-100">
-                            View Details
-                          </button>
-                          <button className="block w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100">
-                            Make it Expire
-                          </button>
-                        </div>
-                      )}
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
-          </div>
-        </main>
+          ) : (
+            <p className="text-center text-gray-500 p-4">No jobs available</p>
+          )}
+        </div>
       </div>
+      <p className="text-center text-gray-500 p-4">
+        No Jobs {filter.charAt(0).toUpperCase() + filter.slice(1)}
+      </p>
 
       {selectedJob && (
         <JobPromotionModal

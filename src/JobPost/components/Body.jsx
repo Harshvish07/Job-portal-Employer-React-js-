@@ -31,7 +31,8 @@ const Body = ({ children }) => {
 
       "/applications",
       "/customer-supports",
-      "/comingSoonPage"
+      "/comingSoonPage",
+      "/viewapplication"
     ].includes(location.pathname);
   const isHiddenFooter =
     isHiddenPage || ["/comingSoonPage"].includes(location.pathname);
@@ -51,7 +52,7 @@ const Body = ({ children }) => {
         )}
 
         {/* Main Content Area */}
-        <div className={`flex-1 ${isHiddenPage ? "" : "md:mx-[130px]"}`}>
+        <div className={`flex-1 ${isHiddenPage ? "" : " md:mx-[130px]  "}`}>
           <main>{children}</main>
         </div>
       </div>

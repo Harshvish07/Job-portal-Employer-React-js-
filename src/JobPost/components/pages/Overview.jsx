@@ -135,6 +135,8 @@ import useJobs from "../../../hooks/postJobs"; // Import the API fetching hook
 import { FaArrowRight, FaEllipsisV, FaRegCheckCircle } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
 
+import { useNavigate } from "react-router-dom";
+
 const Overview = () => {
   const { jobs, loading, error } = useJobs();
   const [showAllJobs, setShowAllJobs] = useState(false);
@@ -142,6 +144,7 @@ const Overview = () => {
 
   const handleViewAll = () => setShowAllJobs(true);
   const displayedJobs = showAllJobs ? jobs : jobs.slice(0, 5);
+  const navigate = useNavigate();
 
   return (
     <div className="p-4">
@@ -245,7 +248,10 @@ const Overview = () => {
                   </td>
                   <td className="p-4">{job.applications || 0} Applications</td>
                   <td className="p-4 relative flex items-center space-x-3">
-                    <button className="bg-[#F1F2F4] hover:bg-[#7900BA] hover:text-white text-[#7900BA] px-4 py-2 rounded-md text-sm">
+                    <button
+                      onClick={() => navigate("/viewapplication")} // Fixed syntax
+                      className="bg-[#F1F2F4] hover:bg-[#7900BA] hover:text-white text-[#7900BA] px-4 py-2 rounded-md text-sm"
+                    >
                       View Applications
                     </button>
                     <div className="relative">

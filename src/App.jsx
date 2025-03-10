@@ -111,6 +111,7 @@ import Login from "./pages/auth/Login";
 import ForgetPassword from "./pages/auth/ForgetPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
 import DetailsPage from "./pages/auth/DetailsPage";
+import ViewApplication from "./JobPost/components/ViewApplication/ViewApplication";
 
 const Home = () => <h1>Home</h1>;
 const FindCandidate = () => <h1>Find Candidate</h1>;
@@ -129,6 +130,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />}>
               <Route index element={<Overview />} />
               <Route path="overview" element={<Overview />} />
+
               <Route path="employerprofile" element={<MainSetting />} />
               <Route path="main-settings" element={<SettingsPage />} />
               <Route path="post-a-job" element={<PostJobForm />} />
@@ -136,6 +138,7 @@ function App() {
               <Route path="saved-candidates" element={<SavedCandidates />} />
               <Route path="plans-billing" element={<PaymentBilling />} />
             </Route>
+            <Route path="viewapplication" element={<ViewApplication />} />
             <Route path="/my-jobs" element={<MyJobs />} />
             <Route path="/applications" element={<Applications />} />
             {/* Static Pages */}
