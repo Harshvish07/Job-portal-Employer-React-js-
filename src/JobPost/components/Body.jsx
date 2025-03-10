@@ -18,6 +18,7 @@ const Body = ({ children }) => {
     "/detailspage",
     "/",
     "/my-jobs",
+    "/home",
 
     "/"
   ].includes(location.pathname);
@@ -32,6 +33,7 @@ const Body = ({ children }) => {
       "/applications",
       "/customer-supports",
       "/comingSoonPage",
+      "/home",
       "/viewapplication"
     ].includes(location.pathname);
   const isHiddenFooter =
@@ -52,7 +54,11 @@ const Body = ({ children }) => {
         )}
 
         {/* Main Content Area */}
-        <div className={`flex-1 ${isHiddenPage ? "" : " md:mx-[130px]  "}`}>
+        <div
+          className={`flex-1 ${
+            isHiddenPage ? "" : " container overflow-x-hidden "
+          }`}
+        >
           <main>{children}</main>
         </div>
       </div>

@@ -112,61 +112,77 @@ import ForgetPassword from "./pages/auth/ForgetPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
 import DetailsPage from "./pages/auth/DetailsPage";
 import ViewApplication from "./JobPost/components/ViewApplication/ViewApplication";
+import { ToastContainer } from "react-toastify";
+import EmailVerificationSuccessful from "./pages/auth/EmailVerificationSuccessful";
+import EmailVerification from "./pages/auth/EmailVerification";
+import Signup from "./pages/auth/Signup";
+import FindCandidate from "./JobPost/components/Find Candidates/FindCandidate";
+import Homepage from "./pages/module/Homepage";
 
-const Home = () => <h1>Home</h1>;
-const FindCandidate = () => <h1>Find Candidate</h1>;
 const CustomerSupports = () => <h1>Customer Support</h1>;
 
 function App() {
   return (
-    <Provider store={store}>
-      <Router>
-        <Body>
-          <Routes>
-            <Route path="/home" element={<Home />} />
-            <Route path="/find-candidate" element={<FindCandidate />} />
-            <Route path="/customer-support" element={<CustomerSupports />} />
-            {/* Dashboard Routes */}
-            <Route path="/dashboard" element={<Dashboard />}>
-              <Route index element={<Overview />} />
-              <Route path="overview" element={<Overview />} />
+    <>
+      <Provider store={store}>
+        <Router>
+          <Body>
+            <Routes>
+              <Route path="/home" element={<Homepage />} />
+              <Route path="/find-candidate" element={<FindCandidate />} />
+              <Route path="/customer-support" element={<CustomerSupports />} />
+              {/* Dashboard Routes */}
+              <Route path="/dashboard" element={<Dashboard />}>
+                <Route index element={<Overview />} />
+                <Route path="overview" element={<Overview />} />
 
-              <Route path="employerprofile" element={<MainSetting />} />
-              <Route path="main-settings" element={<SettingsPage />} />
-              <Route path="post-a-job" element={<PostJobForm />} />
-              <Route path="manage-jobs" element={<CandidatePool />} />
-              <Route path="saved-candidates" element={<SavedCandidates />} />
-              <Route path="plans-billing" element={<PaymentBilling />} />
-            </Route>
-            <Route path="viewapplication" element={<ViewApplication />} />
-            <Route path="/my-jobs" element={<MyJobs />} />
-            <Route path="/applications" element={<Applications />} />
-            {/* Static Pages */}
-            <Route path="/faqs" element={<Faqs />} />
-            <Route path="/terms-conditions" element={<TermsConditions />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/talent-pool" element={<TalentPool />} />
-            <Route path="/coming-soon" element={<ComingSoonPage />} />
-            {/* Authentication Routes */}
-            {/* <Route path="/" element={<Layout />}>
+                <Route path="employerprofile" element={<MainSetting />} />
+                <Route path="main-settings" element={<SettingsPage />} />
+                <Route path="post-a-job" element={<PostJobForm />} />
+                <Route path="manage-jobs" element={<CandidatePool />} />
+                <Route path="saved-candidates" element={<SavedCandidates />} />
+                <Route path="plans-billing" element={<PaymentBilling />} />
+              </Route>
+              <Route path="viewapplication" element={<ViewApplication />} />
+              <Route path="/my-jobs" element={<MyJobs />} />
+              <Route path="/applications" element={<Applications />} />
+              {/* Static Pages */}
+              <Route path="/faqs" element={<Faqs />} />
+              <Route path="/terms-conditions" element={<TermsConditions />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/talent-pool" element={<TalentPool />} />
+              <Route path="/coming-soon" element={<ComingSoonPage />} />
+              {/* Authentication Routes */}
+              {/* <Route path="/" element={<Layout />}>
               <Route path="/login" element={<Login />} />
               <Route path="/forget-password" element={<ForgetPassword />} />
               <Route path="reset-password" element={<ResetPassword />} />
               <Route path="details" element={<DetailsPage />} />
             </Route> */}
-            <Route path="/" element={<Layout />} />
+              <Route path="/" element={<Layout />} />
+              <Route
+                path="/emailVerification/:token"
+                element={<EmailVerification />}
+              />
+              <Route
+                path="/emailVerificationSuccessful"
+                element={<EmailVerificationSuccessful />}
+              />
 
-            <Route path="/login" element={<Login />} />
-            <Route path="/forgetPassword" element={<ForgetPassword />} />
-            <Route path="/resetPassword" element={<ResetPassword />} />
-            <Route path="/detailspage" element={<DetailsPage />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/forgetPassword" element={<ForgetPassword />} />
+              <Route path="/resetPassword" element={<ResetPassword />} />
+              <Route path="/detailspage" element={<DetailsPage />} />
 
-            {/* Catch-All Route */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Body>
-      </Router>
-    </Provider>
+              {/* Catch-All Route */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Body>
+        </Router>
+      </Provider>
+      <ToastContainer />
+    </>
   );
 }
 

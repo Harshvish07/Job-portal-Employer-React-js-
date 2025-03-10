@@ -16,18 +16,17 @@ const MyJobsSearchBar = () => {
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
 
   return (
-    <div className="flex  items-center justify-between bg-white px-6 py-1 shadow-sm">
+    <div className="flex  items-center justify-between bg-white ml-12 px-10 py-1 shadow-sm ">
       {/* Left Side - Logo */}
-      <div className="flex items-center md:space-x-96 md:ml-[75px] ">
-        <img
-          src={companyLogo}
-          alt="TechnoHire Logo"
-          className="h-24 cursor-pointer mr-2 "
-        />
-      </div>
+
+      <img
+        src={companyLogo}
+        alt="TechnoHire Logo"
+        className="h-24 cursor-pointer mr-2 "
+      />
 
       {/* Middle - Search Bar */}
-      <div className="flex items-center border border-gray-300  px-2 py-3 w-1/2 h-2/3">
+      <div className="flex items-center border border-gray-300  px-2 py-3 w-1/3 h-2/3">
         {/* Country Selector (Dropdown) */}
         <Menu as="div" className="relative">
           <Menu.Button className="flex items-center space-x-2 border-r pr-3 cursor-pointer">
@@ -63,7 +62,7 @@ const MyJobsSearchBar = () => {
         </Menu>
 
         {/* Search Input */}
-        <div className="flex items-center w-full pl-3">
+        <div className="flex items-center w-full pl-2">
           <FaSearch className="text-purple-600 text-sm" />
           <input
             type="text"
