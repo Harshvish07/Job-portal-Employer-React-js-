@@ -159,7 +159,7 @@ function App() {
               <Route path="reset-password" element={<ResetPassword />} />
               <Route path="details" element={<DetailsPage />} />
             </Route> */}
-              <Route path="/" element={<Layout />} />
+              <Route path="/" element={<Login />} />
               <Route
                 path="/emailVerification/:token"
                 element={<EmailVerification />}
@@ -169,7 +169,6 @@ function App() {
                 element={<EmailVerificationSuccessful />}
               />
 
-              <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/forgetPassword" element={<ForgetPassword />} />
               <Route path="/resetPassword" element={<ResetPassword />} />
