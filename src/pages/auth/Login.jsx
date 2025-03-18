@@ -8,7 +8,13 @@ import Google from "../../assets/Google.png";
 import Linkedin from "../../assets/Linkedin.png";
 import Circle from "../../assets/Circle.png";
 import useAuthHook from "../../hooks/authHook/useAuthHook";
+
+// import { setAuthData } from "../../JobPost/utils/redux/loginSlice";
+// import { useDispatch } from "react-redux";
+
 const Login = () => {
+  // const dispatch=useDispatch()
+
   const navigate = useNavigate();
   const { employerLogin, loading } = useAuthHook();
   const [email, setEmail] = useState("");
@@ -115,7 +121,7 @@ const Login = () => {
         {/* Sign Up Link */}
         <p className="mt-5">
           Don't have an account?{" "}
-          <Link to="/signup"  className="text-violet-600 hover:underline">
+          <Link to="/signup" className="text-violet-600 hover:underline">
             Sign Up
           </Link>
         </p>
