@@ -31,7 +31,7 @@ const Body = ({ children }) => {
       "/find-candidate",
 
       "/applications",
-      "/customer-supports",
+
       "/comingSoonPage",
       "/home",
       "/viewapplication"

@@ -118,8 +118,7 @@ import EmailVerification from "./pages/auth/EmailVerification";
 import Signup from "./pages/auth/Signup";
 import FindCandidate from "./JobPost/components/Find Candidates/FindCandidate";
 import Homepage from "./pages/module/Homepage";
-
-const CustomerSupports = () => <h1>Customer Support</h1>;
+import CustomerSupports from "./JobPost/components/Support/Support";
 
 function App() {
   return (
@@ -130,7 +129,7 @@ function App() {
             <Routes>
               <Route path="/home" element={<Homepage />} />
               <Route path="/find-candidate" element={<FindCandidate />} />
-              <Route path="/customer-support" element={<CustomerSupports />} />
+
               {/* Dashboard Routes */}
               <Route path="/dashboard" element={<Dashboard />}>
                 <Route index element={<Overview />} />
@@ -146,6 +145,7 @@ function App() {
               <Route path="viewapplication" element={<ViewApplication />} />
               <Route path="/my-jobs" element={<MyJobs />} />
               <Route path="/applications" element={<Applications />} />
+              <Route path="/customer-supports" element={<CustomerSupports />} />
               {/* Static Pages */}
               <Route path="/faqs" element={<Faqs />} />
               <Route path="/terms-conditions" element={<TermsConditions />} />
