@@ -23,7 +23,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await employerLogin(email, password);
-    if (res) navigate("/home");
+    if (res) navigate("/dashboard");
   };
   const facebook = () => {
     facebookLogin();
