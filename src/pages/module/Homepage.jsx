@@ -1,4 +1,6 @@
-// import React, { useState } from "react";
+//new
+
+// import React, { useState, useEffect } from "react";
 // import Illustration from "../../assets/Illustration.png";
 // import FbLogo from "../../assets/FbLogo.png";
 // import UpLogo from "../../assets/UpLogo.png";
@@ -20,38 +22,127 @@
 // import briefcase from "../../assets/briefcase.png";
 // import buildingIcon from "../../assets/buildingIcon.png";
 // import userIcon from "../../assets/user_icon.png";
+// import MainHeader from "../../JobPost/components/header/MainHeader";
+// import MyJobsSearchBar from "../../JobPost/components/pages/Myjobs/MyJobsSearchBar";
 
-// import { FaStar } from "react-icons/fa6";
-// import { FaSearch } from "react-icons/fa";
+// import {
+//   FaStar,
+//   FaSearch,
+//   FaMapMarkerAlt,
+//   FaCalendar,
+//   FaRegBookmark,
+//   FaArrowRight,
+//   FaArrowLeft,
+//   FaPenNib,
+//   FaCode,
+//   FaMusic,
+//   FaChartBar,
+//   FaDatabase,
+//   FaYoutube,
+//   FaTwitter
+// } from "react-icons/fa";
 // import { CiLocationOn } from "react-icons/ci";
 // import { PiBuildingOffice } from "react-icons/pi";
 // import { FaCloudUploadAlt } from "react-icons/fa";
-// import { FaArrowRight } from "react-icons/fa";
-// import { FaArrowLeft } from "react-icons/fa";
-// import { FaPenNib } from "react-icons/fa";
 // import { LuMonitorPlay } from "react-icons/lu";
-// import { FaCode } from "react-icons/fa";
 // import { HiOutlineSpeakerphone } from "react-icons/hi";
-// import { FaMusic } from "react-icons/fa";
-// import { FaChartBar } from "react-icons/fa";
 // import { RiFirstAidKitLine } from "react-icons/ri";
-// import { FaDatabase } from "react-icons/fa";
-
-// import { FaMap } from "react-icons/fa";
-// import { FaRegBookmark } from "react-icons/fa";
-// import { FaCalendar } from "react-icons/fa";
 // import { TiSocialFacebook } from "react-icons/ti";
-// import { FaYoutube } from "react-icons/fa";
 // import { FiInstagram } from "react-icons/fi";
-// import { FaTwitter } from "react-icons/fa";
-// import { FaMapMarkerAlt } from "react-icons/fa";
 
-// {
-//   /* <FontAwesomeIcon icon={faUser} size="1x" color="black" /> */
+// // Error Boundary Component
+// class ErrorBoundary extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = { hasError: false };
+//   }
+
+//   static getDerivedStateFromError(error) {
+//     return { hasError: true };
+//   }
+
+//   componentDidCatch(error, errorInfo) {
+//     console.error("ErrorBoundary caught an error", error, errorInfo);
+//   }
+
+//   render() {
+//     if (this.state.hasError) {
+//       return <h1>Something went wrong. Please try again later.</h1>;
+//     }
+
+//     return this.props.children;
+//   }
 // }
 
 // const Homepage = () => {
 //   const [currentIndex, setCurrentIndex] = useState(0);
+//   const [liveJobsCount, setLiveJobsCount] = useState(0);
+//   const [companiesCount, setCompaniesCount] = useState(0);
+//   const [newJobsCount, setNewJobsCount] = useState(0);
+//   const [recentJobs, setRecentJobs] = useState([]);
+//   const [error, setError] = useState(null);
+
+//   useEffect(() => {
+//     // Fetch Live Jobs Count
+//     fetch("https://technohire-backend.onrender.com/job/getOpenJobs")
+//       .then((response) => {
+//         if (!response.ok) {
+//           throw new Error("Failed to fetch live jobs count");
+//         }
+//         return response.json();
+//       })
+//       .then((data) => setLiveJobsCount(data.openJobsCount))
+//       .catch((error) => {
+//         console.error("Error fetching live jobs count:", error);
+//         setError("Failed to load live jobs count");
+//       });
+
+//     // Fetch Companies Count
+//     fetch("https://technohire-backend.onrender.com/company/companiesCount")
+//       .then((response) => {
+//         if (!response.ok) {
+//           throw new Error("Failed to fetch companies count");
+//         }
+//         return response.json();
+//       })
+//       .then((data) => setCompaniesCount(data.count))
+//       .catch((error) => {
+//         console.error("Error fetching companies count:", error);
+//         setError("Failed to load companies count");
+//       });
+
+//     // Fetch New Jobs Count
+//     fetch("https://technohire-backend.onrender.com/job/newJobsCount")
+//       .then((response) => {
+//         if (!response.ok) {
+//           throw new Error("Failed to fetch new jobs count");
+//         }
+//         return response.json();
+//       })
+//       .then((data) => setNewJobsCount(data.count))
+//       .catch((error) => {
+//         console.error("Error fetching new jobs count:", error);
+//         setError("Failed to load new jobs count");
+//       });
+
+//     // Fetch Recent Jobs
+//     fetch("https://technohire-backend.onrender.com/job/getAllJobs")
+//       .then((response) => {
+//         if (!response.ok) {
+//           throw new Error("Failed to fetch recent jobs");
+//         }
+//         return response.json();
+//       })
+//       .then((data) => setRecentJobs(data.Jobs || [])) // Ensure jobs is an array
+//       .catch((error) => {
+//         console.error("Error fetching recent jobs:", error);
+//         setError("Failed to load recent jobs");
+//       });
+//   }, []);
+
+//   if (error) {
+//     return <div className="text-red-500 text-center">{error}</div>;
+//   }
 
 //   const testimonials = [
 //     {
@@ -59,49 +150,49 @@
 //       position: "Hiring Manager",
 //       text: "“Exceptional service! The platform made it so easy to find qualified candidates for our team. We hired three talented professionals in just a few weeks!”",
 //       image: TestimonialImage,
-//       rating: 5,
+//       rating: 5
 //     },
 //     {
 //       name: "Amit K.",
 //       position: "Software Developer",
 //       text: "“As a job seeker, I found it incredibly easy to apply to roles that fit my skills. Within a month, I landed a fantastic job at a great company!”",
 //       image: TestimonialImage,
-//       rating: 5,
+//       rating: 5
 //     },
 //     {
 //       name: "Suresh M.",
 //       position: "Project Manager",
 //       text: "“The candidate pool is outstanding, and the application process is user-friendly. This platform has been a game-changer for our recruitment needs!”",
 //       image: TestimonialImage,
-//       rating: 5,
+//       rating: 5
 //     },
 //     {
 //       name: "Ankit",
 //       position: "Hiring Manager",
 //       text: "“Exceptional service! The platform made it so easy to find qualified candidates for our team. We hired three talented professionals in just a few weeks!”",
 //       image: TestimonialImage,
-//       rating: 5,
+//       rating: 5
 //     },
 //     {
 //       name: "anil.",
 //       position: "Software Developer",
 //       text: "“As a job seeker, I found it incredibly easy to apply to roles that fit my skills. Within a month, I landed a fantastic job at a great company!”",
 //       image: TestimonialImage,
-//       rating: 5,
+//       rating: 5
 //     },
 //     {
 //       name: "ABhay",
 //       position: "Project Manager",
 //       text: "“The candidate pool is outstanding, and the application process is user-friendly. This platform has been a game-changer for our recruitment needs!”",
 //       image: TestimonialImage,
-//       rating: 5,
+//       rating: 5
 //     },
 //     {
 //       name: "Sandeep",
 //       position: "Project Manager",
 //       text: "“The candidate pool is outstanding, and the application process is user-friendly. This platform has been a game-changer for our recruitment needs!”",
 //       image: TestimonialImage,
-//       rating: 5,
+//       rating: 5
 //     },
 
 //     {
@@ -109,7 +200,7 @@
 //       position: "Project Manager",
 //       text: "“The candidate pool is outstanding, and the application process is user-friendly. This platform has been a game-changer for our recruitment needs!”",
 //       image: TestimonialImage,
-//       rating: 5,
+//       rating: 5
 //     },
 
 //     {
@@ -117,41 +208,31 @@
 //       position: "Project Manager",
 //       text: "“The candidate pool is outstanding, and the application process is user-friendly. This platform has been a game-changer for our recruitment needs!”",
 //       image: TestimonialImage,
-//       rating: 5,
-//     },
+//       rating: 5
+//     }
 //   ];
 
 //   const handleLeftArrow = () => {
-//     // Ensure the index wraps around properly, showing the previous 3 testimonials
 //     setCurrentIndex((prevIndex) =>
 //       prevIndex === 0 ? testimonials.length - 3 : prevIndex - 1
 //     );
 //   };
 
 //   const handleRightArrow = () => {
-//     setCurrentIndex((prevIndex) => {
-//       // Check if we are at the last set of 3 cards
-//       if (prevIndex + 3 >= testimonials.length) {
-//         return 0; // Reset to the first set of cards
-//       }
-//       return prevIndex + 3; // Otherwise, move to the next set of 3 cards
-//     });
+//     setCurrentIndex((prevIndex) =>
+//       prevIndex + 3 >= testimonials.length ? 0 : prevIndex + 1
+//     );
 //   };
-//   // Function to handle dot click to navigate to a specific testimonial
+
 //   const handleDotClick = (index) => {
-//     setCurrentIndex(index); // Directly set to the testimonial index
+//     setCurrentIndex(index);
 //   };
 
 //   const renderStars = (rating) => {
 //     let stars = [];
 //     for (let i = 1; i <= 5; i++) {
 //       stars.push(
-//         <span
-//           key={i}
-//           style={{
-//             color: i <= rating ? "#FFAA00" : "gray",
-//           }}
-//         >
+//         <span key={i} style={{ color: i <= rating ? "#FFAA00" : "gray" }}>
 //           <FaStar />
 //         </span>
 //       );
@@ -160,9 +241,12 @@
 //   };
 
 //   return (
-//     <>
-//       <div className=" bg-white">
-//         <div className="bg-[#F1F2F499] w-full pl-32 pr-32  h-[700px] pt-10">
+//     <ErrorBoundary>
+//       <div className="bg-white container overflow-x-hidden">
+//         <MainHeader />
+//         <MyJobsSearchBar />
+//         {/* Hero Section */}
+//         <div className="bg-[#F1F2F499] w-full pl-32 pr-32 h-[700px] pt-10">
 //           <div className="flex justify-center items-center gap-20">
 //             <div className="mt-12">
 //               <h1 className="font-medium leading-tight text-[48px]">
@@ -179,7 +263,7 @@
 //                   <input
 //                     className="rounded-[1px] p-2 pl-6 order-none outline-none"
 //                     type="text"
-//                     placeholder="Job tittle,keyword..."
+//                     placeholder="Job title, keyword..."
 //                   />
 //                   <FaSearch className="absolute left-0 top-5 transform -translate-y-1/2 text-[#6712B9]" />
 //                 </div>
@@ -205,7 +289,7 @@
 //                 {" "}
 //                 <span className="text-gray-400">Suggestion:</span>Designer,
 //                 Programming,
-//                 <span className="text-[#6712B9]">Digita Marketing</span>
+//                 <span className="text-[#6712B9]">Digital Marketing</span>
 //                 ,Video,Animation
 //               </p>
 
@@ -214,7 +298,7 @@
 //                   className="border-2 border-[#3E1654] shadow-md text-[#6712B9] w-[243px] h-[55px] text-medium rounded-[15px] p-3"
 //                   type="button"
 //                 >
-//                   Become a Cadidate
+//                   Become a Candidate
 //                 </button>
 //                 <button className="border-2 border-[#3E1654] shadow-md text-[#6712B9] w-[243px] h-[55px] rounded-[15px] p-3">
 //                   Become an Employer
@@ -227,57 +311,57 @@
 //             </div>
 //           </div>
 
+//           {/* Stats Section */}
 //           <div className="grid grid-cols-1 mt-6 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-6">
-//             <div className="flex gap-10 justify-center items-center  h-[90px] rounded-lg bg-white border shadow-md ">
+//             <div className="flex gap-10 justify-center items-center h-[90px] rounded-lg bg-white border shadow-md">
 //               <img
-//                 className=" text-[#6712B9] bg-gray-100 rounded-md w-14 p-2 h-14"
+//                 className="text-[#6712B9] bg-gray-100 rounded-md w-14 p-2 h-14"
 //                 src={briefcase}
 //                 alt=""
 //               />
 //               <span>
-//                 <h5 className="font-bold text-lg">1,75,324</h5>
-//                 <p className="text-gray-500">Live job</p>
+//                 <h5 className="font-bold text-lg">{liveJobsCount}</h5>
+//                 <p className="text-gray-500">Live jobs</p>
 //               </span>
 //             </div>
-//             <div className="flex gap-10 justify-center items-center  h-[90px] rounded-lg bg-white border shadow-md ">
+//             <div className="flex gap-10 justify-center items-center h-[90px] rounded-lg bg-white border shadow-md">
 //               <img
-//                 className=" text-[#6712B9] bg-gray-100 rounded-md w-14 p-2 h-14"
+//                 className="text-[#6712B9] bg-gray-100 rounded-md w-14 p-2 h-14"
 //                 src={buildingIcon}
 //                 alt=""
 //               />
 //               <span>
-//                 <h5 className="font-bold text-lg">97,345</h5>
+//                 <h5 className="font-bold text-lg">{companiesCount}</h5>
 //                 <p className="text-gray-500">Companies</p>
 //               </span>
 //             </div>
-//             <div className="flex gap-10 justify-center items-center  h-[90px] rounded-lg bg-white border shadow-md ">
+//             <div className="flex gap-10 justify-center items-center h-[90px] rounded-lg bg-white border shadow-md">
 //               <img
-//                 className=" text-[#6712B9] bg-gray-100 rounded-md w-14 p-2 h-14"
+//                 className="text-[#6712B9] bg-gray-100 rounded-md w-14 p-2 h-14"
 //                 src={userIcon}
 //                 alt=""
 //               />
-//               {/* <FontAwesomeIcon icon={faUserGroup} /> */}
 //               <span>
 //                 <h5 className="font-bold text-lg">38,47,154</h5>
 //                 <p className="text-gray-500">Candidates</p>
 //               </span>
 //             </div>
-
-//             <div className="flex gap-10 justify-center items-center  h-[90px] rounded-lg bg-white border shadow-md ">
+//             <div className="flex gap-10 justify-center items-center h-[90px] rounded-lg bg-white border shadow-md">
 //               <img
-//                 className=" text-[#6712B9] bg-gray-100 rounded-md w-14 p-2 h-14"
+//                 className="text-[#6712B9] bg-gray-100 rounded-md w-14 p-2 h-14"
 //                 src={briefcase}
 //                 alt=""
 //               />
 //               <span>
-//                 <h5 className="font-bold text-lg">7,532</h5>
+//                 <h5 className="font-bold text-lg">{newJobsCount}</h5>
 //                 <p className="text-gray-500">New Jobs</p>
 //               </span>
 //             </div>
 //           </div>
 //         </div>
 
-//         <div className="h-[500px] flex flex-col justify-center  bg-[#FFFFFF] w-full pl-32 pr-32">
+//         {/* Most Popular Vacancies Section */}
+//         <div className="h-[500px] flex flex-col justify-center bg-[#FFFFFF] w-full pl-32 pr-32">
 //           <h1 className="font-normal text-[35px] pb-6">
 //             Most Popular Vacancies
 //           </h1>
@@ -358,11 +442,10 @@
 //           </div>
 //         </div>
 
-//         {/* How Technohire Work  */}
-
+//         {/* How TechnoHire Works Section */}
 //         <div className="h-[542px] bg-[#F1F2F4] w-full pl-32 pr-32 relative">
 //           <h1 className="flex justify-center items-center font-normal text-[35px] pb-2 pt-10">
-//             How TechnoHire work
+//             How TechnoHire Works
 //           </h1>
 
 //           <div className="grid grid-cols-1 mt-6 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-6">
@@ -382,13 +465,13 @@
 //               </div>
 //             </div>
 
-//             <div className="flex flex-col gap-6 justify-center items-center  h-[300px] w-[250px] rounded-lg bg-white">
+//             <div className="flex flex-col gap-6 justify-center items-center h-[300px] w-[250px] rounded-lg bg-white">
 //               <div className="bg-[#6712B9] p-4 mt-10 rounded-full">
-//                 <FaCloudUploadAlt className="w-[40px] h-[40px] text-[#FFFFFF] " />
+//                 <FaCloudUploadAlt className="w-[40px] h-[40px] text-[#FFFFFF]" />
 //               </div>
 
 //               <h5 className="font-medium text-lg">Upload CV/Resume</h5>
-//               <p className=" text-gray-400 text-sm p-4 align-middle">
+//               <p className="text-gray-400 text-sm p-4 align-middle">
 //                 Showcase your skills and experience by uploading your latest CV.
 //                 Let your profile stand out!
 //               </p>
@@ -398,26 +481,26 @@
 //               </div>
 //             </div>
 
-//             <div className="flex flex-col gap-6 justify-center items-center  h-[300px] w-[250px] rounded-lg ">
+//             <div className="flex flex-col gap-6 justify-center items-center h-[300px] w-[250px] rounded-lg">
 //               <div className="p-2 mt-10 bg-[#FFFFFF] rounded-full">
 //                 <img className="w-[60px] h-[60px]" src={search} alt="" />
 //               </div>
-//               <h5 className="font-medium text-lg">Find suitable job</h5>
-//               <p className=" text-gray-400 text-sm p-4 align-center">
+//               <h5 className="font-medium text-lg">Find Suitable Job</h5>
+//               <p className="text-gray-400 text-sm p-4 align-center">
 //                 Discover roles that match your skills and career goals. Your
-//                 perfect fit is just a search away!,
+//                 perfect fit is just a search away!
 //               </p>
 //               <div className="absolute top-[185px] left-[940px]">
 //                 <img src={arrow} alt="arrow" className="w-[190px] h-8" />
 //               </div>
 //             </div>
 
-//             <div className="flex flex-col gap-6 justify-center items-center  h-[300px] w-[250px] rounded-lg">
+//             <div className="flex flex-col gap-6 justify-center items-center h-[300px] w-[250px] rounded-lg">
 //               <div className="p-4 mt-10 bg-[#FFFFFF] rounded-full">
 //                 <img className="w-[40px] h-[40px]" src={circle_wavy} alt="" />
 //               </div>
 //               <h5 className="font-medium text-lg">Apply Job</h5>
-//               <p className=" text-gray-400 text-sm p-4 align-center">
+//               <p className="text-gray-400 text-sm p-4 align-center">
 //                 Ready to take the next step? Submit your application with a
 //                 click and get closer to your dream job!
 //               </p>
@@ -425,6 +508,7 @@
 //           </div>
 //         </div>
 
+//         {/* Popular Category Section */}
 //         <div className="h-[450px] bg-[#FFFF] w-full pl-32 pr-32 pt-10">
 //           <div className="flex justify-between">
 //             <h1 className="font-normal text-[35px] pb-6">Popular Category</h1>
@@ -435,31 +519,30 @@
 //           </div>
 
 //           <div>
-//             <div className="grid grid-cols-2  sm:grid-cols-2 lg:grid-cols-4 gap-12 p-6">
-//               <div className="flex gap-8 justify-center items-center  h-[90px] w-[260px] rounded-lg bg-white ">
-//                 <FaPenNib className=" text-[#6712B9] bg-gray-100 w-12 p-2 h-10 rounded-md" />
+//             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-12 p-6">
+//               <div className="flex gap-8 justify-center items-center h-[90px] w-[260px] rounded-lg bg-white">
+//                 <FaPenNib className="text-[#6712B9] bg-gray-100 w-12 p-2 h-10 rounded-md" />
 //                 <span>
 //                   <h5 className="text-lg font-medium">Graphics & Design</h5>
 //                   <p className="text-gray-500">357 Open position</p>
 //                 </span>
 //               </div>
-//               <div className="flex gap-8 justify-center items-center  h-[90px] w-[260px] rounded-lg bg-white ">
-//                 <FaCode className=" text-[#6712B9] bg-gray-100 w-12 p-2 h-10 rounded-md" />
+//               <div className="flex gap-8 justify-center items-center h-[90px] w-[260px] rounded-lg bg-white">
+//                 <FaCode className="text-[#6712B9] bg-gray-100 w-12 p-2 h-10 rounded-md" />
 //                 <span>
-//                   <h5 className="text-lg font-medium">Code & Programing</h5>
+//                   <h5 className="text-lg font-medium">Code & Programming</h5>
 //                   <p className="text-gray-500">312 Open position</p>
 //                 </span>
 //               </div>
-//               <div className="flex gap-8 justify-center items-center  h-[90px] w-[260px] rounded-lg bg-white">
+//               <div className="flex gap-8 justify-center items-center h-[90px] w-[260px] rounded-lg bg-white">
 //                 <HiOutlineSpeakerphone className="text-[#6712B9] bg-gray-100 w-12 p-2 h-10 rounded-md" />
 //                 <span>
 //                   <h5 className="text-lg font-medium">Digital Marketing</h5>
 //                   <p className="text-gray-500">297 Open position</p>
 //                 </span>
 //               </div>
-
-//               <div className="flex gap-8 justify-center items-center  h-[90px] w-[260px] rounded-lg bg-white ">
-//                 <LuMonitorPlay className=" text-[#6712B9] bg-gray-100 w-12 p-2 h-10 rounded-md" />
+//               <div className="flex gap-8 justify-center items-center h-[90px] w-[260px] rounded-lg bg-white">
+//                 <LuMonitorPlay className="text-[#6712B9] bg-gray-100 w-12 p-2 h-10 rounded-md" />
 //                 <span>
 //                   <h5 className="text-lg font-medium">Video & Animation</h5>
 //                   <p className="text-gray-500">247 Open position</p>
@@ -467,9 +550,9 @@
 //               </div>
 //             </div>
 
-//             <div className="grid grid-cols-2  sm:grid-cols-2 lg:grid-cols-4 gap-12 p-6">
-//               <div className="flex gap-8 justify-center items-center  h-[90px] w-[260px] rounded-lg bg-white">
-//                 <FaMusic className=" text-[#6712B9] bg-gray-100 w-12 p-2 h-10 rounded-md" />
+//             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-12 p-6">
+//               <div className="flex gap-8 justify-center items-center h-[90px] w-[260px] rounded-lg bg-white">
+//                 <FaMusic className="text-[#6712B9] bg-gray-100 w-12 p-2 h-10 rounded-md" />
 //                 <span>
 //                   <h5 className="text-lg font-medium">
 //                     Data Science and Analytics
@@ -477,23 +560,22 @@
 //                   <p className="text-gray-500">204 Open position</p>
 //                 </span>
 //               </div>
-//               <div className="flex gap-8 justify-center items-center  h-[90px] w-[260px] rounded-lg bg-white">
+//               <div className="flex gap-8 justify-center items-center h-[90px] w-[260px] rounded-lg bg-white">
 //                 <PiBuildingOffice className="text-[#6712B9] bg-gray-100 w-12 p-2 h-10 rounded-md" />
 //                 <span>
 //                   <h5 className="text-lg font-medium">UI/UX Design</h5>
 //                   <p className="text-gray-500">167 Open position</p>
 //                 </span>
 //               </div>
-//               <div className="flex gap-6 justify-center items-center  h-[90px] w-[260px] rounded-lg bg-white">
-//                 <RiFirstAidKitLine className=" text-[#6712B9] bg-gray-100 w-12 p-2 h-10 rounded-md" />
+//               <div className="flex gap-6 justify-center items-center h-[90px] w-[260px] rounded-lg bg-white">
+//                 <RiFirstAidKitLine className="text-[#6712B9] bg-gray-100 w-12 p-2 h-10 rounded-md" />
 //                 <span>
 //                   <h5 className="text-lg font-medium">Blockchain Technology</h5>
 //                   <p className="text-gray-500">125 Open position</p>
 //                 </span>
 //               </div>
-
-//               <div className="flex gap-6 justify-center items-center  h-[90px] w-[260px] rounded-lg bg-white border shadow-md ">
-//                 <FaDatabase className=" text-[#FFFFFF] bg-[#6712B9] w-12 p-2 h-10 rounded-md" />
+//               <div className="flex gap-6 justify-center items-center h-[90px] w-[260px] rounded-lg bg-white border shadow-md">
+//                 <FaDatabase className="text-[#FFFFFF] bg-[#6712B9] w-12 p-2 h-10 rounded-md" />
 //                 <span>
 //                   <h5 className="text-lg font-medium text-[#6712B9]">
 //                     Cybersecurity
@@ -503,513 +585,68 @@
 //               </div>
 //             </div>
 //           </div>
-//           <div></div>
 //         </div>
 
-//         <hr className="w-full" />
-
+//         {/* Recent Jobs Section */}
 //         <div className="h-[800px] w-full pt-10 pl-32 pr-32">
-//           <h1 className="font-normal text-[35px] pb-6">Recents Jobs</h1>
+//           <h1 className="font-normal text-[35px] pb-6">Recent Jobs</h1>
 //           <div className="flex flex-col gap-5">
-//             <div className="flex gap-10 h-[90px] rounded-lg bg-white border shadow-md ">
-//               <div className="flex items-start p-4">
-//                 <img className="h-16 w-16" src={UpLogo} alt="UP Logo" />
-//                 <div className="ml-4 flex-grow">
-//                   <div className="flex gap-2 justify-between pb-2">
-//                     <span className="text-xl font-semibold text-gray-800">
-//                       Senior UX Designer
-//                     </span>
-//                     <button className="px-2 font-medium  text-sm py-1 rounded-full bg-[#F5EBFFB2] text-[#6712B9] ">
-//                       Contract Base
+//             {recentJobs &&
+//               recentJobs.slice(0, 6).map((job, index) => (
+//                 <div
+//                   key={index}
+//                   className="flex gap-10 h-[90px] rounded-lg bg-white border shadow-md"
+//                 >
+//                   <div className="flex items-start p-4">
+//                     <img
+//                       className="h-16 w-16"
+//                       src={job.companyLogo}
+//                       alt={job.companyName}
+//                     />
+//                     <div className="ml-4 flex-grow">
+//                       <div className="flex gap-2 justify-between pb-2">
+//                         <span className="text-xl font-semibold text-gray-800">
+//                           {job.title}
+//                         </span>
+//                         <button className="px-2 font-medium text-sm py-1 rounded-full bg-[#F5EBFFB2] text-[#6712B9]">
+//                           {job.type}
+//                         </button>
+//                       </div>
+//                       <div className="flex justify-between">
+//                         <div className="flex items-center">
+//                           <CiLocationOn className="text-[#C5C9D6] text-md font-bold" />
+//                           <span className="font-medium text-gray-400 text-sm">
+//                             {job.location}
+//                           </span>
+//                         </div>
+//                         <div className="flex items-center">
+//                           <span className="text-gray-400 text-sm">₹</span>
+//                           <span className="font-medium text-gray-400 text-sm">
+//                             {job.salary.minSalary}k - {job.salary.maxSalary}k
+//                           </span>
+//                         </div>
+//                         <div className="flex items-center">
+//                           <FaCalendar className="text-gray-400 text-sm" />
+//                           <span className="font-medium text-gray-400 text-sm">
+//                             {job.daysRemaining} days remaining
+//                           </span>
+//                         </div>
+//                       </div>
+//                     </div>
+//                   </div>
+//                   <div className="flex gap-8 items-center ml-[40%]">
+//                     <FaRegBookmark className="text-[#6712B9]" />
+//                     <button className="flex h-10 pl-4 pr-4 items-center text-[#6712B9] rounded-md border-2">
+//                       <span>View All</span>
+//                       <FaArrowRight className="ml-2" />
 //                     </button>
 //                   </div>
-//                   <div className="flex justify-between">
-//                     <div className="flex items-center">
-//                       <CiLocationOn className="text-[#C5C9D6] text-md font-bold" />
-//                       <span className="font-medium text-gray-400 text-sm">
-//                         Nagpur
-//                       </span>
-//                     </div>
-//                     <div className="flex items-center">
-//                       <span className="text-gray-400 text-sm">₹</span>
-//                       <span className="font-medium text-gray-400 text-sm">
-//                         30k-35k
-//                       </span>
-//                     </div>
-//                     <div className="flex items-center">
-//                       <FaCalendar className="text-gray-400 text-sm" />
-//                       <span className="font-medium text-gray-400 text-sm">
-//                         4 days remaining
-//                       </span>
-//                     </div>
-//                   </div>
 //                 </div>
-//               </div>
-//               <div className="flex gap-8 items-center  ml-[40%]">
-//                 <FaRegBookmark className="text-[#6712B9]" />
-//                 <button className="flex h-10 pl-4 pr-4 items-center text-[#6712B9] rounded-md border-2">
-//                   <span>View All</span>
-//                   <FaArrowRight className="ml-2" />
-//                 </button>
-//               </div>
-//             </div>
-
-//             <div className="flex gap-10 h-[90px] rounded-lg bg-white border shadow-md ">
-//               <div className="flex items-start p-4">
-//                 <img className="h-16 w-16" src={appleLogo} alt="UP Logo" />
-//                 <div className="ml-4 flex-grow">
-//                   <div className="flex justify-between pb-2">
-//                     <span className="text-xl font-semibold text-[#6712B9]">
-//                       Software Engineer
-//                     </span>
-//                     <button className="px-4 font-medium  text-sm py-1 rounded-full bg-[#F5EBFFB2] text-[#6712B9] ">
-//                       Full Time
-//                     </button>
-//                   </div>
-//                   <div className="flex gap-5 justify-between">
-//                     <div className="flex items-center">
-//                       <CiLocationOn className="text-[#C5C9D6] text-md font-bold" />
-//                       <span className="font-medium text-gray-400 text-sm">
-//                         Mumbai
-//                       </span>
-//                     </div>
-//                     <div className="flex items-center">
-//                       <span className="text-gray-400 text-sm">₹</span>
-//                       <span className="font-medium text-gray-400 text-sm">
-//                         50k-60k
-//                       </span>
-//                     </div>
-//                     <div className="flex items-center">
-//                       <FaCalendar className="text-gray-400 text-sm" />
-//                       <span className="font-medium text-gray-400 text-sm">
-//                         4 days remaining
-//                       </span>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//               <div className="flex gap-8 items-center  ml-[40%]">
-//                 <FaRegBookmark className="text-[#6712B9]" />
-//                 <button className="flex h-10 pl-4 pr-4 items-center bg-[#6712B9] text-white rounded-md">
-//                   <span>View All</span>
-//                   <FaArrowRight className="ml-2" />
-//                 </button>
-//               </div>
-//             </div>
-
-//             <div className="flex gap-10 h-[90px] rounded-lg bg-white border shadow-md ">
-//               <div className="flex items-start p-4">
-//                 <img
-//                   className="h-16 w-16"
-//                   src={EmployersLogo}
-//                   alt="EmployeerLogo"
-//                 />
-//                 <div className="ml-4 flex-grow">
-//                   <div className="flex justify-between pb-2">
-//                     <span className="text-xl font-semibold text-gray-800">
-//                       Junior Graphic Designer
-//                     </span>
-//                     <button className="px-2 font-medium  text-sm py-1 rounded-full bg-[#F5EBFFB2] text-[#6712B9] ">
-//                       Full Time
-//                     </button>
-//                   </div>
-//                   <div className="flex justify-between">
-//                     <div className="flex items-center">
-//                       <CiLocationOn className="text-[#C5C9D6] text-md font-bold" />
-//                       <span className="font-medium text-gray-400 text-sm">
-//                         Nagpur
-//                       </span>
-//                     </div>
-//                     <div className="flex items-center">
-//                       <span className="text-gray-400 text-sm">₹</span>
-//                       <span className="font-medium text-gray-400 text-sm">
-//                         50k-70k
-//                       </span>
-//                     </div>
-//                     <div className="flex items-center">
-//                       <FaCalendar className="text-gray-400 text-sm" />
-//                       <span className="font-medium text-gray-400 text-sm">
-//                         4 days remaining
-//                       </span>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//               <div className="flex gap-8 items-center  ml-[40%]">
-//                 <FaRegBookmark className="text-[#6712B9]" />
-//                 <button className="flex h-10 pl-4 pr-4 items-center text-[#6712B9] rounded-md border-2">
-//                   <span>View All</span>
-//                   <FaArrowRight className="ml-2" />
-//                 </button>
-//               </div>
-//             </div>
-
-//             <div className="flex gap-10 h-[90px] rounded-lg bg-white border shadow-md ">
-//               <div className="flex items-start p-4">
-//                 <img className="h-16 w-16" src={ULogo} alt="ULogo" />
-//                 <div className="ml-4 flex-grow">
-//                   <div className="flex gap-2 justify-between pb-2">
-//                     <span className="text-xl font-semibold text-gray-800">
-//                       Senior UX Designer
-//                     </span>
-//                     <button className="px-2 font-medium  text-sm py-1 rounded-full bg-[#F5EBFFB2] text-[#6712B9] ">
-//                       Contract Base
-//                     </button>
-//                   </div>
-//                   <div className="flex justify-between">
-//                     <div className="flex items-center">
-//                       <CiLocationOn className="text-[#C5C9D6] text-md font-bold" />
-//                       <span className="font-medium text-gray-400 text-sm">
-//                         Pune
-//                       </span>
-//                     </div>
-//                     <div className="flex items-center">
-//                       <span className="text-gray-400 text-sm">₹</span>
-//                       <span className="font-medium text-gray-400 text-sm">
-//                         35-40k
-//                       </span>
-//                     </div>
-//                     <div className="flex items-center">
-//                       <FaCalendar className="text-gray-400 text-sm" />
-//                       <span className="font-medium text-gray-400 text-sm">
-//                         4 days remaining
-//                       </span>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//               <div className="flex gap-8 items-center  ml-[40%]">
-//                 <FaRegBookmark className="text-[#6712B9]" />
-//                 <button className="flex h-10 pl-4 pr-4 items-center text-[#6712B9] rounded-md border-2">
-//                   <span>View All</span>
-//                   <FaArrowRight className="ml-2" />
-//                 </button>
-//               </div>
-//             </div>
-
-//             <div className="flex gap-10 h-[90px] rounded-lg bg-white border shadow-md ">
-//               <div className="flex items-start p-4">
-//                 <img className="h-16 w-16" src={FbLogo} alt="FbLogo" />
-//                 <div className="ml-4 flex-grow">
-//                   <div className="flex  justify-between pb-2">
-//                     <span className="text-xl font-semibold text-gray-800">
-//                       Marketing Officer
-//                     </span>
-//                     <button className="px-2 font-medium  text-sm py-1 rounded-full bg-[#F5EBFFB2] text-[#6712B9] ">
-//                       Internship
-//                     </button>
-//                   </div>
-//                   <div className="flex gap-7  justify-between">
-//                     <div className="flex items-center">
-//                       <CiLocationOn className="text-[#C5C9D6] text-md font-bold" />
-//                       <span className="font-medium text-gray-400 text-sm">
-//                         Pune
-//                       </span>
-//                     </div>
-//                     <div className="flex items-center">
-//                       <span className="text-gray-400 text-sm">₹</span>
-//                       <span className="font-medium text-gray-400 text-sm">
-//                         50k-90k
-//                       </span>
-//                     </div>
-//                     <div className="flex items-center">
-//                       <FaCalendar className="text-gray-400 text-sm" />
-//                       <span className="font-medium text-gray-400 text-sm">
-//                         4 days remaining
-//                       </span>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//               <div className="flex gap-8 items-center  ml-[40%]">
-//                 <FaRegBookmark className="text-[#6712B9]" />
-//                 <button className="flex h-10 pl-4 pr-4 items-center text-[#6712B9] rounded-md border-2">
-//                   <span>View All</span>
-//                   <FaArrowRight className="ml-2" />
-//                 </button>
-//               </div>
-//             </div>
-
-//             <div className="flex gap-10 h-[90px] rounded-lg bg-white border shadow-md ">
-//               <div className="flex items-start p-4">
-//                 <img
-//                   className="bg-gray-300 h-16 w-16 p-3"
-//                   src={GoogleLogo}
-//                   alt="Google Logo"
-//                 />
-//                 <div className="ml-4 flex-grow">
-//                   <div className="flex gap-2 justify-between pb-2">
-//                     <span className="text-xl font-semibold text-gray-800">
-//                       Interaction Designer
-//                     </span>
-//                     <button className="px-2 font-medium  text-sm py-1 rounded-full bg-[#F5EBFFB2] text-[#6712B9] ">
-//                       Full Time
-//                     </button>
-//                   </div>
-//                   <div className="flex gap-6 justify-between">
-//                     <div className="flex items-center">
-//                       <CiLocationOn className="text-[#C5C9D6] text-md font-bold" />
-//                       <span className="font-medium text-gray-400 text-sm">
-//                         Nagpur
-//                       </span>
-//                     </div>
-//                     <div className="flex items-center">
-//                       <span className="text-gray-400 text-sm">₹</span>
-//                       <span className="font-medium text-gray-400 text-sm">
-//                         5k-10k
-//                       </span>
-//                     </div>
-//                     <div className="flex items-center">
-//                       <FaCalendar className="text-gray-400 text-sm" />
-//                       <span className="font-medium text-gray-400 text-sm">
-//                         4 days remaining
-//                       </span>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-//               <div className="flex gap-8 items-center  ml-[40%]">
-//                 <FaRegBookmark className="text-[#6712B9]" />
-//                 <button className="flex h-10 pl-4 pr-4 items-center text-[#6712B9] rounded-md border-2">
-//                   <span>View All</span>
-//                   <FaArrowRight className="ml-2" />
-//                 </button>
-//               </div>
-//             </div>
+//               ))}
 //           </div>
 //         </div>
 
-//         <div className="h-[650px] bg-[#FFFF] w-full pl-32 pr-32 pt-10">
-//           <div className="flex justify-between">
-//             <h1 className="font-normal text-[35px] pb-6>Top Companies">
-//               Top Companies
-//             </h1>
-
-//             <div className="flex  space-x-4">
-//               <button className="p-4 text-[#6712B9] bg-gray-200 rounded-md ">
-//                 <FaArrowLeft className="text-lg" />
-//               </button>
-
-//               <button className="p-4 text-[#6712B9] bg-gray-200 rounded-md">
-//                 <FaArrowRight className="text-lg" />
-//               </button>
-//             </div>
-//           </div>
-
-//           <div className="grid grid-cols-1 mt-6 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-6">
-//             <div className="flex flex-col border-2  gap-6 h-[200px] w-[250px] rounded-lg">
-//               <div className="flex justify-start items-center gap-8 p-6 rounded-lg bg-white">
-//                 <div className="bg-[#EA4C89] pt-2 pr-4 pb-2 pl-4">
-//                   <img
-//                     className="w-[26px] h-[26px]"
-//                     src={wheel}
-//                     alt="wheel.png"
-//                   />
-//                 </div>
-//                 <span>
-//                   <h5 className="text-lg font-medium">Drible</h5>
-//                   <div className="flex items-center">
-//                     <CiLocationOn className="text-[#939AAD] text-sm" />
-//                     <span className="font-medium text-gray-400 text-sm">
-//                       Pune
-//                     </span>
-//                   </div>
-//                 </span>
-//               </div>
-//               <div className="flex justify-center items-center">
-//                 <button className="bg-[#F5EBFFB2] rounded-[3px] border-2 text-[#6712B9] h-[48px] w-[200px]">
-//                   Open Position
-//                 </button>
-//               </div>
-//             </div>
-
-//             <div className="flex flex-col border-2 gap-6 h-[200px] w-[250px] rounded-lg">
-//               <div className="flex justify-start items-center gap-8 p-6 rounded-lg bg-white">
-//                 <div className="bg-[#6FDA44] pt-2 pr-4 pb-2 pl-4">
-//                   <img
-//                     className="w-[32px] h-[32px]"
-//                     src={UpLogo}
-//                     alt="UpLogo.png"
-//                   />
-//                 </div>
-//                 <span>
-//                   <h5 className="text-lg font-medium">UpWork</h5>
-//                   <div className="flex items-center">
-//                     <CiLocationOn className="text-[#939AAD] text-sm" />
-//                     <span className="font-medium text-gray-400 text-sm">
-//                       Mumbai
-//                     </span>
-//                   </div>
-//                 </span>
-//               </div>
-//               <div className="flex justify-center items-center">
-//                 <button className="bg-[#F5EBFFB2] rounded-[3px] border-2 text-[#6712B9] h-[48px] w-[200px]">
-//                   Open Position
-//                 </button>
-//               </div>
-//             </div>
-
-//             <div className="flex flex-col border-2 border-[#6712B9] shadow-lg  gap-6 h-[200px] w-[250px] rounded-lg">
-//               <div className="flex justify-start items-center gap-8 p-6 rounded-lg bg-white">
-//                 <div className="bg-[#ebe8e9] pt-2 pr-4 pb-2 pl-4">
-//                   <img
-//                     className="w-[26px] h-[26px]"
-//                     src={slack}
-//                     alt="wheel.png"
-//                   />
-//                 </div>
-//                 <span>
-//                   <h5 className="text-lg font-medium">Slack</h5>
-//                   <div className="flex items-center">
-//                     <CiLocationOn className="text-[#939AAD] text-sm" />
-//                     <span className="font-medium text-gray-400 text-sm">
-//                       Nagpur
-//                     </span>
-//                   </div>
-//                 </span>
-//               </div>
-//               <div className="flex justify-center items-center">
-//                 <button className="bg-[#6712B9]  text-[#FFFFFF] h-[48px] w-[200px] rounded-[4px]">
-//                   Open Position
-//                 </button>
-//               </div>
-//             </div>
-
-//             <div className="flex flex-col border-2 gap-6 h-[200px] w-[250px] rounded-lg">
-//               <div className="flex justify-start items-center gap-8 p-6 rounded-lg bg-white">
-//                 <div className="bg-[#1E60C6] pt-2 pr-4 pb-2 pl-4">
-//                   <img
-//                     className="w-[26px] h-[26px]"
-//                     src={crownLogo}
-//                     alt="crown.png"
-//                   />
-//                 </div>
-//                 <span>
-//                   <h5 className="text-lg font-medium">Freepik</h5>
-//                   <div className="flex items-center">
-//                     <CiLocationOn className="text-[#939AAD] text-sm" />
-//                     <span className="font-medium text-gray-400 text-sm">
-//                       Nagpur
-//                     </span>
-//                   </div>
-//                 </span>
-//               </div>
-//               <div className="flex justify-center items-center">
-//                 <button className="bg-[#F5EBFFB2] rounded-[3px] border-2 text-[#6712B9] h-[48px] w-[200px]">
-//                   Open Position
-//                 </button>
-//               </div>
-//             </div>
-//           </div>
-
-//           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-6">
-//             <div className="flex flex-col border-2 gap-6 h-[200px] w-[250px] rounded-lg">
-//               <div className="flex justify-start items-center gap-8 p-6 rounded-lg bg-white">
-//                 <div className="bg-[#EA4C89] pt-2 pr-4 pb-2 pl-4">
-//                   <img
-//                     className="w-[26px] h-[26px]"
-//                     src={wheel}
-//                     alt="wheel.png"
-//                   />
-//                 </div>
-//                 <span>
-//                   <h5 className="text-lg font-medium">Drible</h5>
-//                   <div className="flex items-center">
-//                     <CiLocationOn className="text-[#939AAD] text-sm" />
-//                     <span className="font-medium text-gray-400 text-sm">
-//                       Pune
-//                     </span>
-//                   </div>
-//                 </span>
-//               </div>
-//               <div className="flex justify-center items-center">
-//                 <button className="bg-[#F5EBFFB2] rounded-[3px] border-2 text-[#6712B9] h-[48px] w-[200px]">
-//                   Open Position
-//                 </button>
-//               </div>
-//             </div>
-
-//             <div className="flex flex-col border-2  gap-6 h-[200px] w-[250px] rounded-lg">
-//               <div className="flex justify-start items-center gap-8 p-6 rounded-lg bg-white">
-//                 <div className="bg-[#6FDA44] pt-2 pr-4 pb-2 pl-4">
-//                   <img
-//                     className="w-[32px] h-[32px]"
-//                     src={UpLogo}
-//                     alt="UpLogo.png"
-//                   />
-//                 </div>
-//                 <span>
-//                   <h5 className="text-lg font-medium">UpWork</h5>
-//                   <div className="flex items-center">
-//                     <CiLocationOn className="text-[#939AAD] text-sm" />
-//                     <span className="font-medium text-gray-400 text-sm">
-//                       Mumbai
-//                     </span>
-//                   </div>
-//                 </span>
-//               </div>
-//               <div className="flex justify-center items-center">
-//                 <button className="bg-[#F5EBFFB2] rounded-[3px] border-2 text-[#6712B9] h-[48px] w-[200px]">
-//                   Open Position
-//                 </button>
-//               </div>
-//             </div>
-
-//             <div className="flex flex-col border-2  gap-6 h-[200px] w-[250px] rounded-lg">
-//               <div className="flex justify-start items-center gap-8 p-6 rounded-lg bg-white">
-//                 <div className="bg-[#ebe8e9] pt-2 pr-4 pb-2 pl-4">
-//                   <img
-//                     className="w-[26px] h-[26px]"
-//                     src={slack}
-//                     alt="wheel.png"
-//                   />
-//                 </div>
-//                 <span>
-//                   <h5 className="text-lg font-medium">Slack</h5>
-//                   <div className="flex items-center">
-//                     <CiLocationOn className="text-[#939AAD] text-sm" />
-//                     <span className="font-medium text-gray-400 text-sm">
-//                       Nagpur
-//                     </span>
-//                   </div>
-//                 </span>
-//               </div>
-//               <div className="flex justify-center items-center">
-//                 <button className="bg-[#F5EBFFB2] rounded-[3px] border-2 text-[#6712B9] h-[48px] w-[200px]">
-//                   Open Position
-//                 </button>
-//               </div>
-//             </div>
-
-//             <div className="flex flex-col border-2   gap-6 h-[200px] w-[250px] rounded-lg">
-//               <div className="flex justify-start items-center gap-8 p-6 rounded-lg bg-white">
-//                 <div className="bg-[#1E60C6] pt-2 pr-4 pb-2 pl-4">
-//                   <img
-//                     className="w-[26px] h-[26px]"
-//                     src={crownLogo}
-//                     alt="crown.png"
-//                   />
-//                 </div>
-//                 <span>
-//                   <h5 className="text-lg font-medium">Freepik</h5>
-//                   <div className="flex items-center">
-//                     <CiLocationOn className="text-[#939AAD] text-sm" />
-//                     <span className="font-medium text-gray-400 text-sm">
-//                       Nagpur
-//                     </span>
-//                   </div>
-//                 </span>
-//               </div>
-//               <div className="flex justify-center items-center">
-//                 <button className="bg-[#F5EBFFB2] rounded-[3px] border-2 text-[#6712B9] h-[48px] w-[200px]">
-//                   Open Position
-//                 </button>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-
-//         {/* testimonial  */}
+//         {/* Testimonial Section */}
 //         <div className="py-16 bg-gray-100">
 //           <div className="container mx-auto text-center relative">
 //             <h2 className="text-3xl font-semibold text-gray-800 mb-8">
@@ -1026,7 +663,6 @@
 
 //             {/* Testimonial Cards */}
 //             <div className="flex gap-4 pl-32 pr-32 pt-10">
-//               {/* Ensure always three cards are shown */}
 //               {testimonials
 //                 .slice(currentIndex, currentIndex + 3)
 //                 .map((testimonial, index) => (
@@ -1037,13 +673,11 @@
 //                     <div className="flex gap-2 justify-start pb-6">
 //                       {renderStars(testimonial.rating)}
 //                     </div>
-
 //                     <div className="">
 //                       <p className="text-start pb-10 text-[#464D61] text-sm leading-5">
 //                         {testimonial.text}
 //                       </p>
 //                     </div>
-
 //                     <div className="flex gap-2">
 //                       <div>
 //                         <img
@@ -1061,7 +695,6 @@
 //                             {testimonial.position}
 //                           </p>
 //                         </div>
-
 //                         <div>
 //                           <img src={group} alt="" />
 //                         </div>
@@ -1078,7 +711,7 @@
 //             >
 //               &#8594;
 //             </button>
-//             {/* Dot Navigation */}
+
 //             {/* Dot Navigation */}
 //             <div className="flex justify-center gap-2 pt-6">
 //               {testimonials.map((_, index) => (
@@ -1094,9 +727,9 @@
 //           </div>
 //         </div>
 
+//         {/* Become a Candidate/Employer Section */}
 //         <div className="h-[490px] bg-[#FFFF] w-full pl-32 pr-32 pt-10">
 //           <div className="flex space-x-4 p-6">
-//             {/* Box 1 */}
 //             <div className="flex flex-col gap-[16px] p-[50px] bg-[#E4E5E8] w-[548px] h-[290px] rounded-lg">
 //               <h3 className="text-[32px] leading-[40px] font-inter">
 //                 Become a Candidate
@@ -1106,13 +739,12 @@
 //                 as a candidate to connect with top employers and make your
 //                 profile stand out in the competitive job market!
 //               </p>
-//               <button className="flex  bg-[#FFFFFF] h-[48px] w-[188px] items-center justify-center text-[#6712B9] rounded-[3px] outline-none border-none">
+//               <button className="flex bg-[#FFFFFF] h-[48px] w-[188px] items-center justify-center text-[#6712B9] rounded-[3px] outline-none border-none">
 //                 <span className="text-[16px] font-inter">Register Now</span>
 //                 <FaArrowRight className="ml-2" />
 //               </button>
 //             </div>
 
-//             {/* Box 2 */}
 //             <div className="flex flex-col gap-[16px] p-[50px] bg-[#6712B9] w-[548px] h-[290px] text-[#FFFFFF] rounded-lg">
 //               <h3 className="text-[32px] leading-[40px] font-inter">
 //                 Become an Employer
@@ -1130,8 +762,7 @@
 //           </div>
 //         </div>
 
-//         {/* Footer  */}
-
+//         {/* Footer Section */}
 //         <div className="bg-[#18191C] text-[#FFFFFF] w-full h-[430px] pt-10">
 //           <div className="flex gap-16 mb-20 pl-32 pr-32">
 //             <div className="flex flex-col gap-4 mt-10">
@@ -1148,8 +779,7 @@
 //             <div className="flex flex-col gap-4 mt-10">
 //               <h5 className="text-[20px] leading-[32px]">Quick Link</h5>
 //               <div className="flex items-center space-x-4 cursor-pointer group">
-//                 {/* Arrow */}
-//                 <div className=" mb-2 h-[5.83px] w-[11.67px] group-hover:block hidden">
+//                 <div className="mb-2 h-[5.83px] w-[11.67px] group-hover:block hidden">
 //                   <FaArrowRight />
 //                 </div>
 //                 <div>
@@ -1159,7 +789,6 @@
 //                 </div>
 //               </div>
 //               <div className="flex items-center space-x-4 cursor-pointer group">
-//                 {/* Arrow */}
 //                 <div className="mb-2 h-[5.83px] w-[11.67px] group-hover:block hidden">
 //                   <FaArrowRight />
 //                 </div>
@@ -1170,7 +799,6 @@
 //                 </div>
 //               </div>
 //               <div className="flex items-center space-x-4 cursor-pointer group">
-//                 {/* Arrow */}
 //                 <div className="mb-2 h-[5.83px] w-[11.67px] group-hover:block hidden">
 //                   <FaArrowRight />
 //                 </div>
@@ -1181,8 +809,7 @@
 //                 </div>
 //               </div>
 //               <div className="flex items-center space-x-4 cursor-pointer group">
-//                 {/* Arrow */}
-//                 <div className="mb-2  h-[5.83px] w-[11.67px] group-hover:block hidden">
+//                 <div className="mb-2 h-[5.83px] w-[11.67px] group-hover:block hidden">
 //                   <FaArrowRight />
 //                 </div>
 //                 <div>
@@ -1207,7 +834,6 @@
 //                 Saved Jobs
 //               </a>
 //             </div>
-
 //             <div className="flex flex-col gap-4 mt-10">
 //               <h5 className="text-[20px] leading-[32px]">Employers</h5>
 //               <a href="#" className="text-[#5E6670] text-[14px]">
@@ -1223,7 +849,6 @@
 //                 Applications
 //               </a>
 //             </div>
-
 //             <div className="flex flex-col gap-4 mt-10">
 //               <h5 className="text-[20px] leading-[32px]">Support</h5>
 //               <a href="#" className="text-[#5E6670] text-[14px]">
@@ -1262,13 +887,15 @@
 //           </div>
 //         </div>
 //       </div>
-//     </>
+//     </ErrorBoundary>
 //   );
 // };
 
 // export default Homepage;
 
 import React, { useState, useEffect } from "react";
+import ErrorBoundary from "./ErrorBoundary";
+import useHomepageData from "../../hooks/useHomepageData.js";
 import Illustration from "../../assets/Illustration.png";
 import FbLogo from "../../assets/FbLogo.png";
 import UpLogo from "../../assets/UpLogo.png";
@@ -1318,100 +945,35 @@ import { RiFirstAidKitLine } from "react-icons/ri";
 import { TiSocialFacebook } from "react-icons/ti";
 import { FiInstagram } from "react-icons/fi";
 
-// Error Boundary Component
-class ErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
-
-  static getDerivedStateFromError(error) {
-    return { hasError: true };
-  }
-
-  componentDidCatch(error, errorInfo) {
-    console.error("ErrorBoundary caught an error", error, errorInfo);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return <h1>Something went wrong. Please try again later.</h1>;
-    }
-
-    return this.props.children;
-  }
-}
-
 const Homepage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [liveJobsCount, setLiveJobsCount] = useState(0);
-  const [companiesCount, setCompaniesCount] = useState(0);
-  const [newJobsCount, setNewJobsCount] = useState(0);
-  const [recentJobs, setRecentJobs] = useState([]);
-  const [error, setError] = useState(null);
+  const {
+    liveJobsCount,
+    companiesCount,
+    newJobsCount,
+    recentJobs,
+    loading,
+    error,
+    fetchLiveJobsCount,
+    fetchCompaniesCount,
+    fetchNewJobsCount,
+    fetchRecentJobs
+  } = useHomepageData();
 
+  // Fetch data on component mount
   useEffect(() => {
-    // Fetch Live Jobs Count
-    fetch("https://technohire-backend.onrender.com/job/getOpenJobs")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch live jobs count");
-        }
-        return response.json();
-      })
-      .then((data) => setLiveJobsCount(data.openJobsCount))
-      .catch((error) => {
-        console.error("Error fetching live jobs count:", error);
-        setError("Failed to load live jobs count");
-      });
+    fetchLiveJobsCount();
+    fetchCompaniesCount();
+    fetchNewJobsCount();
+    fetchRecentJobs();
+  }, [
+    fetchLiveJobsCount,
+    fetchCompaniesCount,
+    fetchNewJobsCount,
+    fetchRecentJobs
+  ]);
 
-    // Fetch Companies Count
-    fetch("https://technohire-backend.onrender.com/company/companiesCount")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch companies count");
-        }
-        return response.json();
-      })
-      .then((data) => setCompaniesCount(data.count))
-      .catch((error) => {
-        console.error("Error fetching companies count:", error);
-        setError("Failed to load companies count");
-      });
-
-    // Fetch New Jobs Count
-    fetch("https://technohire-backend.onrender.com/job/newJobsCount")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch new jobs count");
-        }
-        return response.json();
-      })
-      .then((data) => setNewJobsCount(data.count))
-      .catch((error) => {
-        console.error("Error fetching new jobs count:", error);
-        setError("Failed to load new jobs count");
-      });
-
-    // Fetch Recent Jobs
-    fetch("https://technohire-backend.onrender.com/job/getAllJobs")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch recent jobs");
-        }
-        return response.json();
-      })
-      .then((data) => setRecentJobs(data.Jobs || [])) // Ensure jobs is an array
-      .catch((error) => {
-        console.error("Error fetching recent jobs:", error);
-        setError("Failed to load recent jobs");
-      });
-  }, []);
-
-  if (error) {
-    return <div className="text-red-500 text-center">{error}</div>;
-  }
-
+  // Testimonials Data
   const testimonials = [
     {
       name: "Robert Fox",
@@ -1433,86 +995,39 @@ const Homepage = () => {
       text: "“The candidate pool is outstanding, and the application process is user-friendly. This platform has been a game-changer for our recruitment needs!”",
       image: TestimonialImage,
       rating: 5
-    },
-    {
-      name: "Ankit",
-      position: "Hiring Manager",
-      text: "“Exceptional service! The platform made it so easy to find qualified candidates for our team. We hired three talented professionals in just a few weeks!”",
-      image: TestimonialImage,
-      rating: 5
-    },
-    {
-      name: "anil.",
-      position: "Software Developer",
-      text: "“As a job seeker, I found it incredibly easy to apply to roles that fit my skills. Within a month, I landed a fantastic job at a great company!”",
-      image: TestimonialImage,
-      rating: 5
-    },
-    {
-      name: "ABhay",
-      position: "Project Manager",
-      text: "“The candidate pool is outstanding, and the application process is user-friendly. This platform has been a game-changer for our recruitment needs!”",
-      image: TestimonialImage,
-      rating: 5
-    },
-    {
-      name: "Sandeep",
-      position: "Project Manager",
-      text: "“The candidate pool is outstanding, and the application process is user-friendly. This platform has been a game-changer for our recruitment needs!”",
-      image: TestimonialImage,
-      rating: 5
-    },
-
-    {
-      name: "Suraj",
-      position: "Project Manager",
-      text: "“The candidate pool is outstanding, and the application process is user-friendly. This platform has been a game-changer for our recruitment needs!”",
-      image: TestimonialImage,
-      rating: 5
-    },
-
-    {
-      name: "Abhinash",
-      position: "Project Manager",
-      text: "“The candidate pool is outstanding, and the application process is user-friendly. This platform has been a game-changer for our recruitment needs!”",
-      image: TestimonialImage,
-      rating: 5
     }
+    // Add more testimonials as needed
   ];
 
+  // Event Handlers
   const handleLeftArrow = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? testimonials.length - 3 : prevIndex - 1
+    setCurrentIndex((prev) =>
+      prev === 0 ? testimonials.length - 3 : prev - 1
     );
   };
 
   const handleRightArrow = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex + 3 >= testimonials.length ? 0 : prevIndex + 1
-    );
+    setCurrentIndex((prev) => (prev + 3 >= testimonials.length ? 0 : prev + 1));
   };
 
-  const handleDotClick = (index) => {
-    setCurrentIndex(index);
-  };
+  const handleDotClick = (index) => setCurrentIndex(index);
 
   const renderStars = (rating) => {
-    let stars = [];
-    for (let i = 1; i <= 5; i++) {
-      stars.push(
-        <span key={i} style={{ color: i <= rating ? "#FFAA00" : "gray" }}>
-          <FaStar />
-        </span>
-      );
-    }
-    return stars;
+    return [...Array(5)].map((_, i) => (
+      <FaStar key={i} color={i < rating ? "#FFAA00" : "gray"} />
+    ));
   };
+
+  // Loading and Error States
+  if (loading) return <div className="text-center p-8">Loading...</div>;
+  if (error) return <div className="text-red-500 text-center p-8">{error}</div>;
 
   return (
     <ErrorBoundary>
       <div className="bg-white container overflow-x-hidden">
         <MainHeader />
         <MyJobsSearchBar />
+
         {/* Hero Section */}
         <div className="bg-[#F1F2F499] w-full pl-32 pr-32 h-[700px] pt-10">
           <div className="flex justify-center items-center gap-20">
@@ -1859,58 +1374,57 @@ const Homepage = () => {
         <div className="h-[800px] w-full pt-10 pl-32 pr-32">
           <h1 className="font-normal text-[35px] pb-6">Recent Jobs</h1>
           <div className="flex flex-col gap-5">
-            {recentJobs &&
-              recentJobs.slice(0, 6).map((job, index) => (
-                <div
-                  key={index}
-                  className="flex gap-10 h-[90px] rounded-lg bg-white border shadow-md"
-                >
-                  <div className="flex items-start p-4">
-                    <img
-                      className="h-16 w-16"
-                      src={job.companyLogo}
-                      alt={job.companyName}
-                    />
-                    <div className="ml-4 flex-grow">
-                      <div className="flex gap-2 justify-between pb-2">
-                        <span className="text-xl font-semibold text-gray-800">
-                          {job.title}
+            {recentJobs.slice(0, 6).map((job, index) => (
+              <div
+                key={index}
+                className="flex gap-10 h-[90px] rounded-lg bg-white border shadow-md"
+              >
+                <div className="flex items-start p-4">
+                  <img
+                    className="h-16 w-16"
+                    src={job.companyLogo}
+                    alt={job.companyName}
+                  />
+                  <div className="ml-4 flex-grow">
+                    <div className="flex gap-2 justify-between pb-2">
+                      <span className="text-xl font-semibold text-gray-800">
+                        {job.title}
+                      </span>
+                      <button className="px-2 font-medium text-sm py-1 rounded-full bg-[#F5EBFFB2] text-[#6712B9]">
+                        {job.type}
+                      </button>
+                    </div>
+                    <div className="flex justify-between">
+                      <div className="flex items-center">
+                        <CiLocationOn className="text-[#C5C9D6] text-md font-bold" />
+                        <span className="font-medium text-gray-400 text-sm">
+                          {job.location}
                         </span>
-                        <button className="px-2 font-medium text-sm py-1 rounded-full bg-[#F5EBFFB2] text-[#6712B9]">
-                          {job.type}
-                        </button>
                       </div>
-                      <div className="flex justify-between">
-                        <div className="flex items-center">
-                          <CiLocationOn className="text-[#C5C9D6] text-md font-bold" />
-                          <span className="font-medium text-gray-400 text-sm">
-                            {job.location}
-                          </span>
-                        </div>
-                        <div className="flex items-center">
-                          <span className="text-gray-400 text-sm">₹</span>
-                          <span className="font-medium text-gray-400 text-sm">
-                            {job.salary.minSalary}k - {job.salary.maxSalary}k
-                          </span>
-                        </div>
-                        <div className="flex items-center">
-                          <FaCalendar className="text-gray-400 text-sm" />
-                          <span className="font-medium text-gray-400 text-sm">
-                            {job.daysRemaining} days remaining
-                          </span>
-                        </div>
+                      <div className="flex items-center">
+                        <span className="text-gray-400 text-sm">₹</span>
+                        <span className="font-medium text-gray-400 text-sm">
+                          {job.salary.minSalary}k - {job.salary.maxSalary}k
+                        </span>
+                      </div>
+                      <div className="flex items-center">
+                        <FaCalendar className="text-gray-400 text-sm" />
+                        <span className="font-medium text-gray-400 text-sm">
+                          {job.daysRemaining} days remaining
+                        </span>
                       </div>
                     </div>
                   </div>
-                  <div className="flex gap-8 items-center ml-[40%]">
-                    <FaRegBookmark className="text-[#6712B9]" />
-                    <button className="flex h-10 pl-4 pr-4 items-center text-[#6712B9] rounded-md border-2">
-                      <span>View All</span>
-                      <FaArrowRight className="ml-2" />
-                    </button>
-                  </div>
                 </div>
-              ))}
+                <div className="flex gap-8 items-center ml-[40%]">
+                  <FaRegBookmark className="text-[#6712B9]" />
+                  <button className="flex h-10 pl-4 pr-4 items-center text-[#6712B9] rounded-md border-2">
+                    <span>View All</span>
+                    <FaArrowRight className="ml-2" />
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
