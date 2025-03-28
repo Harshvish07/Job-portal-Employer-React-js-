@@ -12,6 +12,8 @@ import useAuthHook from "../../hooks/authHook/useAuthHook";
 // import { setAuthData } from "../../JobPost/utils/redux/loginSlice";
 // import { useDispatch } from "react-redux";
 
+//new
+
 const Login = () => {
   // const dispatch=useDispatch()
 
