@@ -131,20 +131,58 @@
 import { useState } from "react";
 import { FaBriefcase } from "react-icons/fa";
 import { PiIdentificationCardLight } from "react-icons/pi";
-import useJobs from "../../../hooks/postJobs"; // Import the API fetching hook
+// import useJobs from "../../../hooks/postJobs"; // Import the API fetching hook
 import { FaArrowRight, FaEllipsisV, FaRegCheckCircle } from "react-icons/fa";
 import { RxCrossCircled } from "react-icons/rx";
 
 import { useNavigate } from "react-router-dom";
 
 const Overview = () => {
-  const { jobs, loading, error } = useJobs();
+  // const { jobs, loading, error } = useJobs();
   const [showAllJobs, setShowAllJobs] = useState(false);
   const [menuOpen, setMenuOpen] = useState(null);
 
   const handleViewAll = () => setShowAllJobs(true);
   const displayedJobs = showAllJobs ? jobs : jobs.slice(0, 5);
   const navigate = useNavigate();
+
+  const jobs = [
+    {
+      title: "UI/UX Designer",
+      type: "Full Time",
+      remaining: "27 days remaining",
+      status: "Active",
+      applications: 798
+    },
+    {
+      title: "Senior UX Designer",
+      type: "Internship",
+      remaining: "8 days remaining",
+      status: "Active",
+      applications: 185
+    },
+    {
+      title: "Technical Support Specialist",
+      type: "Part Time",
+      remaining: "4 days remaining",
+      status: "Active",
+      applications: 556
+    },
+    {
+      title: "Junior Graphic Designer",
+      type: "Full Time",
+      remaining: "24 days remaining",
+      status: "Active",
+      applications: 583
+    },
+    {
+      title: "Front End Developer",
+      type: "Full Time",
+      remaining: "Dec 7, 2019",
+      status: "Expire",
+      applications: 740
+    }
+  ];
 
   return (
     <div className="p-4">
